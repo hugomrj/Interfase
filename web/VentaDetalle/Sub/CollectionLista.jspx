@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<jsp:root version="2.0"
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:x="http://java.sun.com/jsp/jstl/fmt"          
+     >
+    
+   
+    
+        <table class="tableB">
+                <thead>
+                       
+                    <tr>
+                        <th style="width: 80px;" rowspan="2">Cantidad</th>                                                                
+                        <th style="width: 300px;" rowspan="2">Descripcion</th>
+                        <th style="width: 100px;" rowspan="2" >Precio</th>
+                        <th colspan="3">Precio de ventas</th>
+
+                    </tr>
+                    
+                    <tr>                       
+                        
+                        <th style="width: 100px;">Exenta</th>
+                        <th style="width: 100px;">5%</th>
+                        <th style="width: 100px;">10%</th>                        
+                    </tr>                    
+                    
+                    
+                </thead>
+
+                <tbody>
+                    
+                    <c:forEach items="${detalle}" var ="lista" >
+                        
+                        <tr>
+                            
+                            <detalle  id="${lista.id}">
+                                
+                                <td>
+                                    <cantidad>${lista.cantidad}</cantidad>
+                                </td>
+                                <td>
+                                    <descripcion>${lista.producto.nombre}</descripcion>
+                                </td>
+                                <td>
+                                    <precio_venta>
+                                        <x:formatNumber type="number" maxFractionDigits="0" value="${lista.precio_venta}" />
+                                    </precio_venta>
+                                </td>
+                                <td>
+                                    <porcentaje0>
+                                        <x:formatNumber type="number" maxFractionDigits="0" value="${lista.porcentaje0}" />
+                                    </porcentaje0>
+                                </td>
+                                <td>
+                                    <porcentaje5>
+                                        <x:formatNumber type="number" maxFractionDigits="0" value="${lista.porcentaje5}" />
+                                    </porcentaje5>
+                                </td>
+                                <td>
+                                    <porcentaje10>
+                                        <x:formatNumber type="number" maxFractionDigits="0" value="${lista.porcentaje10}" />                                        
+                                    </porcentaje10>
+                                </td>
+                                
+                            </detalle>
+                        
+                        </tr>  
+                    </c:forEach>
+                </tbody>
+                
+                
+                
+        </table>
+       
+    
+        <article>
+            
+        </article>
+    
+       
+</jsp:root>

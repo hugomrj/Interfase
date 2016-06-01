@@ -1,0 +1,207 @@
+
+/* Color 1 BASE  */
+
+nav, footer, button, ul#menu, ul#menu li, .botonEnlace {
+    background: sienna;
+}
+
+ul#listaProcesos li a:hover {
+    border-left-color: sienna;
+}
+
+#pagination .active, #pagination a:hover, .botonEnlace2
+{
+    border-color: sienna;
+}
+
+#pagination a:link, #pagination a:visited,
+    .tableB th, .tableB tfoot tr td,
+    .botonEnlace2
+{
+    color: sienna;
+}
+
+
+h1, h2,  h3, h4, h5, h6{
+    color: sienna;
+}
+
+
+/*Color 2 color de base convinada */
+
+.tableB th, .tableB tfoot tr td,  .tableB tbody
+, .cc-border
+{
+    border-color: #76300E;
+}
+
+.tableA th {
+    background: #76300E;
+}
+
+/*  cuadricula de busqueda  */
+.tbusqueda tbody,   .tbusqueda th{
+    border-bottom-color: #76300E;
+    border-top-color: #76300E;
+}
+
+.tbusqueda th {
+      color: #76300E;
+}
+
+
+
+/*Color 3  color de base suave*/
+
+.tableB tbody tr {
+  background: #FFEEE6;
+}
+
+.tableA tbody tr, #pagination .active , .campoRelacionado,
+.tbusqueda tr,
+.botonEnlace2
+{
+  background: #FFEEE6;
+}
+
+#pagination a {
+    border-color: #FFEEE6;
+}
+
+
+
+
+
+/*Color 4  resaltado*/
+button:hover, ul#menu li a:hover, .botonEnlace:hover {
+    background-color: #D4D7DB;
+
+}
+
+
+
+
+/*Color 5  enfoque */
+.Enfoque
+{
+    background-color:#EDF2EA;
+}
+
+ul#listaProcesos li a:hover {
+    background-color:#EDF2EA;
+}
+
+.tableA tbody tr:hover,
+.tableB tbody tr:hover
+{
+    background:#EDF2EA;
+}
+
+.botonEnlace2:hover
+{
+    background-color:#EDF2EA;
+}
+
+
+
+
+
+/*Color de texto*/
+/*letras claras*/
+button, ul#menu li a, .botonEnlace {
+    color:white;
+}
+
+
+
+/*letras oscuras*/
+button:hover, ul#menu li a:hover, .botonEnlace:hover {
+    color:black;
+}
+
+
+ul#listaProcesos li h4 {
+    color: DimGray;
+    color: #666666;
+    color: DimGray;
+}
+
+.tableA, .tableB,
+.botonEnlace2
+{
+    color: DimGray;
+}
+
+
+
+
+
+
+/* color de la linea de abajo en menu*/
+li a:hover {
+      /*  border-bottom: 4px solid MediumSeaGreen;*/
+}
+
+
+
+
+/*especiales */
+
+.busqueda input:focus {
+    border: 1px solid;
+    border-color: tan;
+}
+
+.busqueda label {
+    color: DimGray;
+    color: #666666;
+}
+
+
+.error {
+    color:red;
+}
+
+.info{
+    color:blue;
+}
+
+
+
+/* White*/
+.tableA th {
+    color: white;
+}
+
+.tableB th, .tableB tfoot tr td  {
+    background:white ;
+}
+
+
+/*
+  .tbusqueda th {
+    background: white;
+}
+
+
+.tbusqueda tr:nth-child(even)  {
+ background:white;
+
+}
+*/
+
+
+
+
+
+/*  capas  */
+/*  standard     opacity: 0.3;     opacity: 1;   */
+#capa_oscura, #capa_oscura_segunda
+{
+     background-color: rgba(47, 79, 79, .3);
+}
+
+ #capa_busqueda, #capa_clara_primera, #capa_clara_segunda, #capa_clara
+{
+ background-color: white;
+}

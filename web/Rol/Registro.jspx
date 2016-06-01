@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+    
+    <head>
+    
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+    
+    
+        <style type="text/css">            
+            @import "../css/Basic.css" ;     
+            @import "../css/Media.css" ;    
+            @import "../css/${SessionTheme}"; 
+        </style>
+    
+        
+        <script type="text/javascript">
+            <jsp:include page="../js/ajax/libreria.js" />
+            <jsp:include page="../js/utilidad/funciones.js"/>
+
+            <jsp:include page="../js/validate/UsuarioRol/common.js" />
+            <jsp:include page="../js/validate/UsuarioRol/ColeccionUsuarioLista.js" />
+            <jsp:include page="../js/validate/UsuarioRol/ColeccionUsuarioAgregar.js" />
+            <jsp:include page="../js/validate/UsuarioRol/ColeccionUsuarioRegistro.js" />
+            <jsp:include page="../js/validate/UsuarioRol/ColeccionUsuarioEliminar.js" />
+
+            <jsp:include page="../js/validate/RolInteraccion/common.js" />
+            <jsp:include page="../js/validate/RolInteraccion/ColeccionInteraccionLista.js" />
+            <jsp:include page="../js/validate/RolInteraccion/ColeccionInteraccionAgregar.js" />
+            <jsp:include page="../js/validate/RolInteraccion/ColeccionInteraccionRegistro.js" />
+            <jsp:include page="../js/validate/RolInteraccion/ColeccionInteraccionEliminar.js" />
+
+            <jsp:include page="../js/validate/Rol/Registro.js" />
+        </script>
+        
+    </head>
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        
+        
+        <body>    
+            
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+                
+                <aside>
+                    <div></div>
+                </aside>
+
+                <section>                  
+                    
+                    <article>
+                            <h3>Rol</h3>  
+                    </article>
+                    
+                    <article>
+                        
+                        <form>
+                            
+                            <div class = "SinEnfoque">                                
+                                <label for="rol">Codigo:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                           name="rol" 
+                                           id ="rr_rol"
+                                           value="${SessionControlRol.rol}" 
+                                           readonly="readonly"/>                                
+                                </div>            
+                            </div>                                
+                            
+                            <div class = "SinEnfoque">                                
+                                <label for="nombre">Nombre:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                           name="nombre" 
+                                           id="rr_nombre"
+                                           value="${SessionControlRol.nombre}" 
+                                           readonly="readonly"/>                                
+                                </div>            
+                            </div>                                  
+             
+                        </form>	                                    
+                        
+                    </article>
+                                           
+                    <article class = "botones-footer">
+
+                        <div class ="commandbutton">
+                            <a href="javascript:void(0);"
+                            id = "rr_agregar" 
+                            class="botonEnlace">Agregar</a>
+                        </div>                 
+
+                                           
+                        <div class ="commandbutton">
+                            <a href="javascript:void(0);"
+                            id = "rr_editar" 
+                            class="botonEnlace">Editar</a>
+                        </div>                        
+
+                            
+                        <div class ="commandbutton">
+                            <a href="javascript:void(0);"
+                            id = "rr_borrar"  
+                            class="botonEnlace">Borrar</a>
+                        </div>                                                                                                                                                                                       
+                    
+
+                        <div class ="commandbutton">
+                            <a href="javascript:void(0);"  
+                            id = "rr_listar"
+                            class="botonEnlace">Lista</a>
+                        </div>                    
+                    
+                    </article>
+
+                                        
+                        <article  class = "tab-cabecera">
+                                
+                            <ul id="tabs">
+                                <tab  id='usuario_tab'>
+                                    <li>
+                                        
+                                            <c:url value="../UsuarioRol/Collection/Usuario.do" var="urlTab1">  
+                                                <c:param name="rol" value="${SessionControlRol.rol}"/>    
+                                                <c:param name="page" value="1"/>    
+                                            </c:url>     
+                                                                
+                                        <a href="javascript:void(0);"
+                                            id="a_usuario_tab"
+                                            >
+                                            <descripcion>Usuarios</descripcion>
+                                        </a>                        
+                                        
+                                    </li>
+                                </tab>   
+                
+                                <tab  id='interaccion_tab'>
+                                    <li>
+                
+                                        <c:url value="../RolInteraccion/Collection/Interaccion/Listar.do" var="urlTab2">  
+                                            <c:param name="rol" value="${SessionControlRol.rol}"/>    
+                                            <c:param name="page" value="1"/>    
+                                        </c:url>     
+                
+                                        <a href="javascript:void(0);"
+                                            id="a_interaccion_tab"
+                                            >
+                                            <descripcion>Interaccion</descripcion>
+                                        </a>                        
+                                                                
+                                    </li>
+                                </tab> 
+                            </ul>
+                
+                        </article>                        
+            
+                            
+                        <article  class = "tab-detalle">
+                            <div id="tab_body">
+                            </div>
+                        </article>
+                                        
+                </section>
+                
+            </div>
+
+            <footer>
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>                
+                </h6>
+            </footer>
+                            
+                
+        
+                <div id="capa_oscura">
+                    <div id="capa_clara">                        
+                    </div>
+                </div>     
+        
+                <div id="capa_oscura_segunda">
+                    <div id="capa_clara_segunda">
+                    </div>
+                </div>                    
+
+                
+        </body>
+    
+        
+    </jsp:element>
+                       
+</jsp:root>

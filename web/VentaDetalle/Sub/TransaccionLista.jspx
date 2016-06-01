@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<jsp:root version="2.0"
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:x="http://java.sun.com/jsp/jstl/fmt"  
+     >
+    
+    
+        <table class="tableB">
+                <thead>
+                    
+                    <tr>
+                        <th style="width: 80px;" rowspan="2">Cantidad</th>                                                                
+                        <th style="width: 300px;" rowspan="2">Descripcion</th>
+                        <th style="width: 100px;" rowspan="2" >Precio</th>
+                        <th colspan="3">Precio de ventas</th>
+
+                    </tr>
+                    
+                    <tr>                       
+                        
+                        <th style="width: 100px;">Exenta</th>
+                        <th style="width: 100px;">5%</th>
+                        <th style="width: 100px;">10%</th>                        
+                    </tr>                    
+                    
+                </thead>
+                <tbody>
+                    <c:forEach items="${VentaDetalleTransaccionSessionLista}" var ="lista" >
+                        
+                        <c:url value="../VentaDetalle/Transaccion/Registro.do" var="Url">  
+                            <c:param name="id" value="${lista.id}" />    
+                        </c:url>  
+                        
+                        <tr onclick="
+                                    javascript:mostrarVentana('capa_oscura');
+                                    javascript:mostrarVentana('capa_clara');
+                                    AjaxPeticion( '${Url}' , 'capa_clara' );
+                                    dimensionarVentana('capa_clara', 800, 250);
+                            ">
+                            
+                            <detalle  id="${lista.id}">
+                                
+                                <td>
+                                    <cantidad>${lista.cantidad}</cantidad>
+                                </td>
+                                <td>
+                                    <descripcion>${lista.producto.nombre}</descripcion>
+                                </td>
+                                <td>
+                                    <precio_venta class="right">
+                                        <x:formatNumber type="number" maxFractionDigits="0" value="${lista.precio_venta}" />
+                                    </precio_venta>
+                                </td>
+                                <td>
+                                    <porcentaje0  class="right">
+                                        <x:formatNumber type="number" maxFractionDigits="0" value="${lista.porcentaje0}" />
+                                    </porcentaje0>
+                                </td>
+                                <td>
+                                    <porcentaje5  class="right">
+                                        <x:formatNumber type="number" maxFractionDigits="0" value="${lista.porcentaje5}" />
+                                    </porcentaje5>
+                                </td>
+                                <td>
+                                    <porcentaje10  class="right">
+                                        <x:formatNumber type="number" maxFractionDigits="0" value="${lista.porcentaje10}" />
+                                    </porcentaje10>
+                                </td>
+                                
+                            </detalle>
+                        
+                        </tr>  
+                    </c:forEach>
+                        
+                        <tr>
+                        <td colspan="6" style="height: 15px;"></td>                       
+                        </tr> 
+                        
+                </tbody>
+            
+                
+                <tfoot>
+
+                    
+                    <tr>
+                        <td colspan="3" >       
+                                Columna 1
+                        </td>
+                        
+                        <td>exenta</td>
+                        <td>5</td>
+                        <td>10</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="4" >       
+                                Columna1
+                        </td>
+                       
+                        <td>5</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>                        
+                        <td colspan="3" >       
+                                liquidacion IVA                                
+                        </td>
+                        <td>       
+                            ( 10% )                                   
+                        </td>                        
+                        
+                        <td colspan="2">10</td>
+                        
+                    </tr>                    
+                    
+                </tfoot>                
+                
+        </table>
+       
+    
+        <article>
+        
+            
+            <jsp:scriptlet>                    
+                                        
+                    request.setAttribute("Pagina", request.getAttribute("Pagina")) ;
+                    request.setAttribute("Lineas", request.getAttribute("Lineas"));
+                    request.setAttribute("TotalRegistros", request.getAttribute("TotalRegistros"));                    
+                    request.setAttribute("Vinculo", request.getAttribute("Vinculo")); 
+                    
+                    request.setAttribute("htmlElemento", "tab_body"); 
+                    request.setAttribute("ajaxFuncion", "javascript:AjaxPeticion"); 
+                                                            
+            </jsp:scriptlet>  
+            
+        </article>
+    
+       
+    
+            <div class ="commandbutton">            
+                <a href="javascript:void(0);" 
+                   id="agregar_producto"
+                    class="botonEnlace2"                    
+                    >Agregar</a>                    
+            </div>                     
+            
+            
+                        
+</jsp:root>

@@ -1,0 +1,114 @@
+
+<jsp:root version="2.0"
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+    
+        <table class="tableB"
+               id="cdtl_tabla">
+            
+                <thead>
+                    <tr>
+                       
+                        <th style="width: 100px;">Producto</th>
+                        <th style="width: 350px;">Descripcion</th>
+                        <th style="width: 150px;">Cantidad</th>
+                        <th style="width: 150px;">Precio</th>
+                        <th style="width: 150px;">Sub total</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${CompraDetalleTransaccionSessionLista}" var ="lista" >
+                         
+                        <tr>                            
+                            <td>
+                                <producto
+                                    data-reg ="${lista.id}">
+                                    ${lista.producto.producto}
+                                </producto>
+                            </td>
+                            <td>
+                                <descripcion>${lista.producto.nombre}</descripcion>
+                            </td>                                
+                            <td class="right-aling">
+                                ${lista.cantidad}
+                            </td>
+                            <td class="right-aling">
+                                ${lista.precio}
+                            </td>
+                            <td class="right-aling">
+                                ${lista.sub_total}
+                            </td>
+                                
+                        </tr>  
+                    </c:forEach>
+                </tbody>
+                
+        </table>
+
+        <table class="tableB">
+    
+            <thead>
+                <tr>                       
+                    <th style="width: 100px; border: none;"></th>
+                    <th style="width: 350px; border: none;"></th>
+                    <th style="width: 150px; border: none;"></th>
+                    <th style="width: 150px; border: none;"></th>
+                    <th style="width: 150px; border: none;"></th>
+                </tr>
+            </thead>        
+                
+            <tfoot>
+                <tr>                    
+                    <td colspan="2" >       
+                        Sub Total
+                    </td>
+                    <td class="right-aling"
+                        id = "cdtl_suma_cantidad">                        
+                    </td>
+                    <td class="right-aling"
+                        id = "cdtl_suma_precio">                        
+                    </td>
+                    <td class="right-aling"
+                        id = "cdtl_suma_subtotal">                        
+                    </td>
+                    
+                </tr>                    
+            </tfoot>   
+        </table>
+
+       
+    
+        <article>
+                    
+            <jsp:scriptlet>                    
+                                        
+                    request.setAttribute("Pagina", request.getAttribute("Pagina")) ;
+                    request.setAttribute("Lineas", request.getAttribute("Lineas"));
+                    request.setAttribute("TotalRegistros", request.getAttribute("TotalRegistros"));                    
+                    request.setAttribute("Vinculo", request.getAttribute("Vinculo")); 
+                    
+                    request.setAttribute("htmlElemento", "tab_body"); 
+                    request.setAttribute("ajaxFuncion", "javascript:AjaxPeticion"); 
+                                                            
+            </jsp:scriptlet>  
+            
+        </article>
+    
+        <article class = "botones-footer">
+    
+            <div class ="commandbutton">                            
+                          <a href="javascript:void(0);"
+                          id = "cdtl_agregar"  
+                          class="botonEnlace2"
+                          >Agregar</a>             
+            </div>                     
+        </article>            
+    
+    
+    
+</jsp:root>
+                
+
+

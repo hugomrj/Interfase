@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+
+
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          >
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+
+
+    <jsp:directive.include file="js/codigojs.jsp"/>
+
+
+
+        <style type="text/css" >
+
+            @import "css/Basic.css" ;
+            @import "css/Media.css" ;
+            @import "css/themes/Blue.css";
+
+        </style>
+
+
+
+        <script type="text/javascript">
+            <jsp:include page="js/ajax/libreria.js" />
+            <jsp:include page="js/utilidad/funciones.js"/>
+            <jsp:include page="js/validate/Usuario/Login.js" />
+        </script>
+
+
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+
+
+        <head>
+
+
+
+
+        </head>
+        <body>
+
+
+
+            <header>
+                <div></div>
+            </header>
+
+
+            <nav>
+                <div></div>
+            </nav>
+
+
+            <div id="wrapper">
+
+
+                <article class="centrado">
+
+                        <br/>
+                        <h2>Inicio de session</h2>
+
+                        <form
+                            action="./Usuario/Login.do"
+                            name="form_login"
+                            id="form_login"
+                            method="post"
+                            >
+
+                            <div class = "SinEnfoque" id="i1">
+                                <label for="cuenta">Usuario:</label>
+                                <div class ="textbox">
+                                    <input TYPE="TEXT"
+                                           name="cuenta"
+                                           id ="cuenta"
+                                           />
+                                </div>
+                            </div>
+
+                            <div class= "SinEnfoque" id="i2">
+                                <label for="clave">Contraseña:</label>
+                                <div class ="textbox">
+                                    <input TYPE="PASSWORD"
+                                           name="clave"
+                                           id ="clave"
+                                           />
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                        <article class = "botones-footer">
+                          <div class ="commandbutton">
+                              <a href="javascript:void(0);"
+                                  id="ingresar"
+                                  class="botonEnlace"
+                                  >Ingresar</a>
+                          </div>
+                        </article>
+
+                    </article>
+
+
+
+
+            </div>
+
+
+
+            <footer>
+                <div></div>
+            </footer>
+
+
+        </body>
+
+    </jsp:element>
+
+</jsp:root>

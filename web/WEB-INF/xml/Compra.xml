@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    
+    <table 
+        name="compras">           
+            
+            <id name="compra"/>                        
+
+            <column name="numero_factura" property = "factura"/> 
+            <column name="fecha" insertnot="insertnot"   /> 
+            <column name="fecha_factura"/> 
+            
+            <column name="proveedor" foreign = "Proveedor"/> 
+
+    </table>
+    
+</root>
+

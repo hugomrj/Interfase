@@ -1,0 +1,26 @@
+
+9 de diciembre de 2015
+ant -f /home/hugo/NetBeansProjects/Interfase -Dnb.internal.action.name=rebuild -DforceRedeploy=false -Dbrowser.context=/home/hugo/NetBeansProjects/Interfase clean dist
+para ubuntu
+
+sudo cp -rf /home/hugo/NetBeansProjects/Interfase/build/web/*  /opt/tomcat/webapps/Interfase
+
+
+tail -f /opt/tomcat/logs/catalina.out
+
+
+
+
+windows
+cd C:\Users\hugom_000\Documents\apache-ant-1.9.6\bin
+ant -f C:\\Users\\hugom_000\\Documents\\NetBeansProjects\\Interfase -Dnb.internal.action.name=rebuild -DforceRedeploy=false -Dbrowser.context=C:\\Users\\hugom_000\\Documents\\NetBeansProjects\\Interfase clean dist
+copy C:\Users\hugom_000\Documents\NetBeansProjects\Interfase\dist\Interfase.war C:\Server\apache-tomcat-8.0.22\webapps
+
+
+rd /s C:\Server\apache-tomcat-8.0.22\webapps\Interfase
+
+
+
+
+
+

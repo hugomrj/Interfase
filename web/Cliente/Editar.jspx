@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+
+    <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+    
+        <style type="text/css" >
+
+            @import "../css/Basic.css" ;
+            @import "../css/Media.css" ;
+            @import "../css/${SessionTheme}";
+
+        </style>
+
+
+        <script type="text/javascript">
+
+            <jsp:include page="../js/ajax/libreria.js" />
+            <jsp:include page="../js/utilidad/funciones.js"/>
+            <jsp:include page="../js/validate/Cliente/common.js" />
+            <jsp:include page="../js/validate/Cliente/Editar.js" />
+
+        </script>
+
+
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        <jsp:body>
+
+
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+
+                <aside>
+                    <div></div>
+                </aside>
+
+                <section>
+
+                    <article>
+                            <h3>Editar Cliente</h3>
+                    </article>
+
+                    <article>
+
+                        <form action="../Cliente/Editar.do"
+                            method="post"
+                            id="ce_form"
+                            name='ce_form'>
+
+                            <div class = "SinEnfoque">
+                                <label for="cliente">Cliente:</label>
+                                <div class ="textbox">
+                                    <input TYPE="TEXT"
+                                        name="cliente"
+                                        id = "ce_cliente"
+                                        value="${SessionControlCliente.cliente}"
+                                        readonly="true"
+                                        size ="20"
+                                        />
+                                </div>
+                            </div>
+
+
+                            <div class = "SinEnfoque"
+                              id="i2">
+                                <label for="cedula">Cedula:</label>
+                                <div class ="textbox">
+                                    <input TYPE="TEXT"
+                                      name="cedula"
+                                      id = "ce_cedula"
+                                      value="${SessionControlCliente.cedula}"
+                                      size ="20"
+                                      />
+                                </div>
+                            </div>
+
+                            <div class = "SinEnfoque"
+                              id="i3">
+                                <label for="nombre">Nombre:</label>
+                                <div class ="textbox">
+                                    <input TYPE="TEXT"
+                                        name="nombre"
+                                        id = "ce_nombre"
+                                        value="${SessionControlCliente.nombre}"
+                                        size ="50"
+                                        />
+                                </div>
+                            </div>
+
+                            <div class = "SinEnfoque"
+                              id="i4">
+                                <label for="apellido">Apellido:</label>
+                                <div class ="textbox">
+                                    <input TYPE="TEXT"
+                                        name="apellido"
+                                        id = "ce_apellido"
+                                        value="${SessionControlCliente.apellido}"
+                                        size ="50"
+                                        />
+                                </div>
+                            </div>
+
+                            <div class = "SinEnfoque"
+                              id="i5">
+                                <label for="email">Email:</label>
+                                <div class ="textbox">
+                                    <input TYPE="email"
+                                        name="email"
+                                        id = "ce_email"
+                                        value="${SessionControlCliente.email}"
+                                        size ="50"
+                                        />
+                                </div>
+                            </div>
+
+                            <div class = "SinEnfoque"
+                              id="i6">
+                                <label for="direccion">Direccion:</label>
+                                <div class ="textbox">
+                                    <input TYPE="text"
+                                        name="direccion"
+                                        id = "ce_direccion"
+                                        value="${SessionControlCliente.direccion}"
+                                        size ="50"
+                                        />
+                                </div>
+                            </div>
+
+                            <div class = "SinEnfoque"
+                              id="i7">
+                                <label for="telefono">Telefono:</label>
+                                <div class ="textbox">
+                                    <input TYPE="text"
+                                        name="telefono"
+                                        id = "ce_telefono"
+                                        value="${SessionControlCliente.telefono}"
+                                        size ="30"
+                                        />
+                                </div>
+                            </div>
+
+                            <div class = "SinEnfoque"
+                              id="i8">
+                                <label for="celular">Celular:</label>
+                                <div class ="textbox">
+                                    <input TYPE="text"
+                                      name="celular"
+                                      id = "ce_celular"
+                                      value="${SessionControlCliente.celular}"
+                                      size ="30"
+                                      />
+                                </div>
+                            </div>
+
+                            <div class = "SinEnfoque"
+                              id="i9">
+                                <label for="ruc">Ruc:</label>
+                                <div class ="textbox">
+                                    <input TYPE="text"
+                                        name="ruc"
+                                        id = "ce_ruc"
+                                        value="${SessionControlCliente.ruc}"
+                                        size ="30"
+                                        />
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </article>
+                                        
+
+                    <article class = "botones-footer">
+                        <div class ="commandbutton">
+                                <a href="javascript:void(0);"
+                                class="botonEnlace"
+                                id="ce_aceptar"
+                                >Aceptar</a>
+                        </div>
+
+
+                        <div class ="commandbutton">
+                                <a href="javascript:void(0);"
+                                  id="ce_cancelar"
+                                  class="botonEnlace"
+                                  >Cancelar</a>
+                        </div>
+                    </article>
+
+                        
+                </section>
+            </div>
+
+            <footer>
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>
+                </h6>
+            </footer>
+
+        </jsp:body>
+    </jsp:element>
+
+</jsp:root>

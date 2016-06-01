@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+   
+    <jsp:directive.include file="../js/codigojs.jsp"/> 
+
+        <style type="text/css" >     
+            @import "../css/Basic.css" ;     
+            @import "../css/Media.css" ;    
+            @import "../css/SeaGreen.css" ;     
+        </style>
+     
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        <jsp:body>
+                      
+            <header>
+                header
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspx/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+                <aside>
+                    aside
+                </aside>
+
+                <section>
+                    <article>
+
+                       
+
+
+                    </article>
+                </section>
+            </div>
+
+            <footer>
+                footer
+            </footer>
+                            
+        </jsp:body>
+    </jsp:element>
+                       
+</jsp:root>

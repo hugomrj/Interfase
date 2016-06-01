@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    
+    <table 
+        name="ventas_detalle">           
+            
+            <id name="venta_detalle" property = "id"/>    
+                                
+            <column name="venta" foreign = "Venta"/> 
+            <column name="producto" foreign = "Producto"/> 
+                        
+            <column name="cantidad"/> 
+            <column name="precio"  property = "precio_venta"/> 
+            <column name="sub_total"/> 
+            <column name="porcentaje0"/> 
+            <column name="porcentaje5"/> 
+            <column name="porcentaje10"/> 
+            <column name="descuento"/> 
+            
+    </table>
+    
+</root>

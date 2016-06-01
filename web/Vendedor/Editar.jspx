@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+    
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>   
+    <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+    
+
+        <style type="text/css" >
+            @import "../css/Basic.css" ;
+            @import "../css/Media.css" ;
+            @import "../css/${SessionTheme}";
+        </style>
+        
+        
+        <script type="text/javascript">
+            <jsp:include page="../js/ajax/libreria.js" />
+            <jsp:include page="../js/utilidad/funciones.js"/>
+            <jsp:include page="../js/validate/Vendedor/common.js" />
+            <jsp:include page="../js/validate/Vendedor/Editar.js" />
+        </script>        
+              
+      
+        
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        <jsp:body>
+
+                      
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+                
+                <aside>
+                    <div></div>
+                </aside>
+
+                <section>                  
+                    
+                    <article>
+                            <h3>Editar Vendedor</h3>  
+                    </article>
+                    
+                    <article>
+                            
+                        <form action="../Vendedor/Editar.do" 
+                            method="post" 
+                            id="ve_form" 
+                            name='ve_form'>
+                            
+                            
+                            <div class = "SinEnfoque">                                
+                                <label for="vendedor">Vendedor:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                           name="vendedor"
+                                           id = "ve_vendedor" 
+                                           value="${SessionControlVendedor.vendedor}" 
+                                           size ="20"  
+                                           readonly="readonly"
+                                           />
+                                </div>            
+                            </div>                                
+    
+
+                            <div class = "SinEnfoque"
+                                 id="i2">                                
+                                <label for="nombre">Nombre:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                           name="nombre"
+                                           id = "ve_nombre"
+                                           value="${SessionControlVendedor.nombre}"                                            
+                                           size ="50"   
+                                           />                                
+                                </div>            
+                            </div>
+
+                            <div class = "SinEnfoque"
+                                 id="i3">                                
+                                <label for="apellido">Apellido:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                           name="apellido"
+                                           id = "ve_apellido"
+                                           value="${SessionControlVendedor.apellido}" 
+                                           size ="50"   
+                                           />                                
+                                </div>            
+                            </div>
+                            
+                            
+                        </form>	                                    
+                        
+                    </article> 
+
+                                
+                    <article class = "botones-footer">
+                        <div class ="commandbutton">
+                                <a href="javascript:void(0);"
+                                class="botonEnlace"
+                                id="ve_aceptar"
+                                >Aceptar</a>
+                        </div>
+
+
+                        <div class ="commandbutton">
+                                <a href="javascript:void(0);"
+                                  id="ve_cancelar"
+                                  class="botonEnlace"
+                                  >Cancelar</a>
+                        </div>
+                    </article>
+                                
+                              
+                    
+                </section>
+            </div>
+
+            <footer>
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>                
+                </h6>
+            </footer>
+                            
+        </jsp:body>
+    </jsp:element>
+                       
+</jsp:root>

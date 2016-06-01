@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+    
+    <jsp:directive.page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"/>
+    <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+   
+        <head>    
+
+            <style type="text/css" >            
+
+                @import "../css/Basic.css" ;     
+                @import "../css/Media.css" ;    
+                @import "../css/${SessionTheme}"; 
+
+            </style>
+
+
+
+            <script type="text/javascript">            
+                <jsp:include page="../js/ajax/libreria.js" />
+                <jsp:include page="../js/utilidad/funciones.js"/>
+                <jsp:include page="../js/validate/Categoria/Registro.js" />
+            </script>                      
+
+        </head>
+
+
+        <jsp:element name="html">
+            <jsp:attribute name="lang">ES</jsp:attribute>
+
+       
+        <body>
+                      
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+                
+                <aside>
+                    <div></div>
+                </aside>
+
+                <section>                  
+                    
+                    <article>
+                            <h3>Categoria</h3>  
+                    </article>
+                    
+                    <article>
+                        
+                        <form>
+                            
+                            <div class = "SinEnfoque">                                
+                                <label for="categoria">Categoria</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                           name="categoria" 
+                                           id ="cr_categoria"
+                                           value="${SessionControlCategoria.categoria}" 
+                                           size ="20"  
+                                           readonly="readonly"
+                                           />
+                                </div>            
+                            </div>                                
+    
+
+                            <div class = "SinEnfoque">                                
+                                <label for="descripcion">Descripcion:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                           name="descripcion" 
+                                           id ="cr_descripcion"
+                                           value="${SessionControlCategoria.descripcion}" 
+                                           size ="50"   
+                                           readonly="readonly"
+                                           />                                
+                                </div>            
+                            </div>
+                                          
+                                          
+                        </form>	                                    
+                        
+                    </article>
+                                           
+
+                    <article class = "botones-footer">
+
+                      <div class ="commandbutton">
+                          <a href="javascript:void(0);"
+                          id = "cr_agregar" 
+                          class="botonEnlace">Agregar</a>
+                      </div>
+
+                      <div class ="commandbutton">
+                          <a href="javascript:void(0);"
+                          id = "cr_editar" 
+                          class="botonEnlace">Editar</a>
+                      </div>
+
+                      <div class ="commandbutton">
+                          <a href="javascript:void(0);"  
+                          id = "cr_borrar"
+                          class="botonEnlace">Borrar</a>
+                      </div>
+                                            
+                      <div class ="commandbutton">
+                          <a href="javascript:void(0);"
+                          id = "cr_listar"  
+                          class="botonEnlace">Lista</a>
+                      </div>
+                                                                                                                                 
+                    </article>
+
+
+                </section>
+            </div>
+
+            <footer>
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>                
+                </h6>
+            </footer>
+           
+
+                <div id="capa_oscura">
+                    <div id="capa_clara">                        
+                    </div>
+                </div>     
+
+
+                <div id="capa_oscura_segunda">
+                    <div id="capa_clara_segunda">
+                    </div>
+                </div>                    
+
+
+        </body>
+    
+    
+    </jsp:element>
+                       
+</jsp:root>

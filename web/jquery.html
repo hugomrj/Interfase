@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8" />
+
+    <title>jQuery UI Datepicker - Uso básico</title>
+    
+    <link rel="stylesheet" 
+          href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+
+    <script>
+
+if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
+    jQuery(function($){ //on document.ready
+        $('#birthday').datepicker();
+    })
+}
+
+
+    </script>
+    </head>
+
+    <body>
+        
+
+        <form>
+            <b>Date of birth:</b>
+            <input 
+                    type="date" 
+                    id="birthday" 
+                    name="birthday" 
+                    size="20" />
+            <input type="button" value="Submit" name="B1">
+
+        </form>        
+        
+        
+    
+    </body>
+</html>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : Agregar
+    Created on : 04/06/2015, 02:35:27 PM
+    Author     : hugom_000
+-->
+
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/format">
+    
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+    
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+
+    
+    <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+    <jsp:directive.include file="../js/codigojs.jsp"/> 
+    <jsp:directive.include file="../js/ajax/XMLHttpRequest.jsp"/>
+    <jsp:directive.include file="../js/ajax/Funciones.jsp"/>
+        
+    
+        <style type="text/css">            
+            
+            @import "../css/Basic.css" ;     
+            @import "../css/Media.css" ;    
+            @import "../css/${SessionTheme}"; 
+            
+        </style>
+    
+    
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        
+        <head>    
+        </head>
+        
+               
+        <body>    
+
+            <c:set scope="session" var="Tab" value="0" />                                
+            
+            
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+                
+                <aside style="width:5%;">
+                    <div></div>
+                </aside>
+
+                <section style="width:95%;">                  
+                    
+                    <article>
+                            <h3>Compras</h3>  
+                    </article>
+                    
+                    <article>
+                            
+                        <form >
+
+                            
+                            <input  TYPE= "TEXT" 
+                                    name="compra" 
+                                    hidden="hidden" 
+                                    value="${compra.compra}"/>      
+
+                            
+                            <div class = "SinEnfoque"
+                                  id="i2">                                
+                                <label for="factura">Factura</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                           name="factura" 
+                                           size ="20"   
+                                           value="${compra.factura}"
+                                           readonly="readonly"
+                                           />                                
+                                </div>            
+                            </div>
+                         
+
+            
+                    <c:set var="fecha_factura_session" value="${compra.fecha_factura}"  />
+                    <jsp:scriptlet>                
+
+                        java.text.SimpleDateFormat dateFormat= new java.text.SimpleDateFormat("yyyy-MM-dd");
+
+                        if (pageContext.getAttribute("fecha_factura_session") != null)  
+                        {
+                            String fecha_formato = dateFormat.format(pageContext.getAttribute("fecha_factura_session"));  
+                            pageContext.setAttribute("fecha_factura", fecha_formato );          
+                        }
+                        else
+                        {
+                            pageContext.setAttribute("fecha_factura", null ); 
+                        }
+
+                   </jsp:scriptlet>
+            
+            
+                            <div class = "SinEnfoque"
+                                  id="i3">                                
+                                <label for="fecha_factura">Fecha factura</label> 
+                                <div class ="textbox">
+                                    <input TYPE="date" 
+                                           name="fecha_factura" 
+                                           size="20"
+                                           value="${fecha_factura}"
+                                           readonly="readonly"                                           
+                                           />                                
+                                </div>            
+                            </div>
+                         
+                            
+                            <div class = "SinEnfoque" 
+                                 id="i4">                                
+                                <label for="proveedor">Proveedor:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                           name="proveedor" 
+                                           id ="id_proveedor"
+                                           size ="10" 
+                                            value="${compra.proveedor.proveedor}" 
+                                            readonly="readonly"
+                                           />      
+
+                                    
+                                    <output class="campoRelacionado"  
+                                        id="nombreDescripcion">
+                                        ${compra.proveedor.nombre}
+                                    </output>
+                                                                       
+                                            
+                                </div>   
+                            </div>
+                            
+                            
+                        </form>	                                    
+                        
+                    </article> 
+
+                                    
+        <article>
+            <div id="tab_body">
+                
+                <jsp:include page="../CompraDetalle/Sub/CollectionLista.jspx" >
+                    <jsp:param name="detalle" value=" ${detalle}" />
+                </jsp:include>
+                
+            </div>
+        </article>                        
+
+                                    
+                                    
+                   <article>
+                        <c:url value="../Compra/Listar.do" var="UrlSalir"> </c:url>
+                        <div class ="commandbutton">
+                                <a href="${UrlSalir}" class="botonEnlace">Salir</a>
+                        </div>                        
+                   </article> 
+                                                            
+
+                    <article>
+                        <div> 
+                            <c:set var="varMensaje" value="${SessionMensajes}" />                                                        
+                            <c:if test="${varMensaje != 'null'}">
+                                
+                                <div class="${SessionMensajes.css}">                               
+                                    <c:out value="${SessionMensajes.informacion}" />
+                                    <br/>
+                                    <c:out value="${SessionMensajes.getAdiccionarError()}"/>                                         
+                                </div>
+                                    
+                             </c:if>
+                             <c:set scope="session" var="SessionMensajes" value="null" />                                
+                        </div>    
+                    </article>                                
+                    
+                </section>
+            </div>
+
+                        
+                        
+            <footer>
+                
+                <c:remove var="foo" scope="session"/>                
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>                
+                </h6>
+        
+            </footer>
+                
+                 
+                
+            <div id="capa1">
+                <div id="capa_oscura">
+                    <div id="capa_clara">                        
+                    </div>
+                </div>     
+            </div>
+
+        <div id="capa2">
+                <div id="capa_oscura_segunda">
+                    <div id="capa_clara_segunda">
+                    </div>
+                </div>                    
+        </div>
+
+        <div id="capa3"></div>
+                
+             
+                
+                
+                
+        </body>
+    </jsp:element>
+                       
+</jsp:root>

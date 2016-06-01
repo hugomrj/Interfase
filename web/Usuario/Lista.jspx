@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+
+
+        <style type="text/css" >
+            @import "../css/Basic.css" ;
+            @import "../css/Media.css" ;
+            @import "../css/${SessionTheme}";
+        </style>
+
+
+        <script type="text/javascript">
+            <jsp:include page="../js/ajax/libreria.js" />
+            <jsp:include page="../js/utilidad/funciones.js"/>
+            <jsp:include page="../js/validate/Usuario/Lista.js" />
+        </script>
+
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        <jsp:body>
+
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+
+                <aside>
+                    <div>
+                    </div>
+                </aside>
+
+                <section>
+
+                        <div class = "busqueda">
+                            <form  action="../Usuario/Listar.do" method="post">
+                                <label for="buscarUsuario">Buscar:</label>
+                                <input type="search" name="buscarUsuario"  placeholder="escribir y presionar Enter"  />
+                            </form>
+                        </div>
+
+                    <article>
+                            <h3>Usuarios</h3>
+                    </article>
+
+                    <article>
+
+                        <table class="tableA">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th style="width: 160px;">Cuenta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <c:forEach items="${SessionListaUsuario}" var ="usuarios" >
+
+                                    <c:url value="../Usuario/Filtrar.do" var="Url">
+                                    <c:param name="id" value="${usuarios.usuario}"/>
+                                    <c:param name="pag" value="Registro.jspx"/>
+                                </c:url>
+
+
+                                <tr onclick="location.href = '${Url}'">
+                                    <usuario  id="${usuarios.usuario}">
+
+                                        <td >
+                                            <usuario>${usuarios.usuario} </usuario>
+                                        </td>
+                                        <td>
+                                            <cuenta>${usuarios.cuenta}</cuenta>
+                                        </td>
+                                    </usuario>
+                                </tr>
+
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+
+                    </article>
+
+                    <article>
+                        <jsp:directive.include file="../WEB-INF/jspf/pagination.jspf"/>
+                    </article>
+
+
+                    <article class = "botones-footer">
+                        <div class ="commandbutton">
+                            <a href="../Usuario/Agregar.jspx" class="botonEnlace">Agregar</a>
+                        </div>
+                    </article>
+
+
+                    <br/><br/>
+
+                </section>
+            </div>
+
+            <footer>
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>
+                </h6>
+            </footer>
+
+        </jsp:body>
+    </jsp:element>
+
+</jsp:root>

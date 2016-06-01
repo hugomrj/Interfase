@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+    
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+   
+    <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+
+
+
+        <style type="text/css" >            
+            
+            @import "../css/Basic.css" ;     
+            @import "../css/Media.css" ;    
+            @import "../css/${SessionTheme}"; 
+            
+        </style>
+
+
+        <script type="text/javascript">            
+            <jsp:include page="../js/ajax/libreria.js" />
+            <jsp:include page="../js/utilidad/funciones.js"/>      
+            <jsp:include page="../js/validate/Producto/common.js" />                
+            <jsp:include page="../js/validate/Producto/Borrar.js" />
+        </script>       
+                    
+        
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        <jsp:body>
+
+                      
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+                
+                <aside>
+                    <div></div>
+                </aside>
+
+                <section>                  
+                    
+                    <article>
+                            <h3>Eliminar Producto</h3>  
+                    </article>
+                    
+                   <article>
+                            
+                        <form action="../Producto/Borrar.do" 
+                            method="post" 
+                            id="pb_form" 
+                            name='pb_form'>
+
+
+                            <div class = "SinEnfoque"
+                                 id="i1">                                
+                                <label for="producto">Producto:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                        name="producto"
+                                        id = "pb_producto" 
+                                        value="${SessionControlProducto.producto}" 
+                                        size ="20"  
+                                        readonly="readonly"
+                                        />
+                                </div>            
+                            </div>   
+
+                                           
+                            <div class = "SinEnfoque"
+                                  id="i2">                                
+                                <label for="nombre">Nombre:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                        name="nombre"
+                                        id="pb_nombre" 
+                                        value="${SessionControlProducto.nombre}" 
+                                        size ="50"   
+                                        readonly="readonly"
+                                        />                                
+                                </div>            
+                            </div>
+                         
+
+                            <div class = "SinEnfoque" 
+                                 id="i3">                                
+                                <label for="codigo_barra">Codigo barra:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                        name="codigo_barra"
+                                        id = "pb_codigo_barra" 
+                                        value="${SessionControlProducto.codigo_barra}" 
+                                        size ="30"
+                                        readonly="readonly"
+                                        />                                
+                                </div>            
+                            </div>
+
+                            
+                            <div class = "SinEnfoque" 
+                                 id="i4">                                
+                                <label for="categoria">Categoria:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                        name="categoria"
+                                        id = "pb_categoria" 
+                                        value="${SessionControlProducto.categoria.categoria}"
+                                        size ="10"
+                                        readonly="readonly"
+                                        class = "campoFK"
+                                        />                                    
+
+                                    
+                                    <output class="campoRelacionado"  
+                                        id="pb_categoria_descripcion">${SessionControlProducto.categoria.descripcion}
+                                    </output>
+                             
+                                </div>   
+                            </div>
+
+                            
+                            <div class = "SinEnfoque" 
+                                 id="i5">                                
+                                <label for="precio_venta">Precio venta:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                        name="precio_venta"
+                                        id = "pb_precio_venta" 
+                                        value="${SessionControlProducto.precio_venta}"
+                                        size ="15"
+                                        readonly="readonly"
+                                        class="right-aling"
+                                        />                                
+                                </div>            
+                            </div>
+                                           
+                                           
+                            <div class = "SinEnfoque" 
+                                 id="i6">                                
+                                <label for="precio_valor">Precio valor:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                        name="precio_valor" 
+                                        id = "pb_precio_valor"
+                                        value="${SessionControlProducto.precio_valor}" 
+                                        size ="15"  
+                                        readonly="readonly"
+                                        class="right-aling"
+                                        />                                
+                                </div>            
+                            </div>                                           
+                                           
+                            <div class = "SinEnfoque" 
+                                 id="i7">                                
+                                <label for="impuesto_valor">Impuesto valor:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                            name="impuesto_valor"
+                                            id = "pb_impuesto_valor" 
+                                           value="${SessionControlProducto.impuesto_valor}" 
+                                           size ="15"  
+                                           readonly="readonly"
+                                           class="right-aling"
+                                           />                                
+                                </div>            
+                            </div>                                                                                      
+                                                                                      
+
+                            <div class = "SinEnfoque" 
+                                 id="i8">                                
+                                <label for="impuesto">Impuesto:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                        name="impuesto"
+                                        id = "pb_impuesto" 
+                                        value="${SessionControlProducto.impuesto}" 
+                                        size ="15" 
+                                        readonly="readonly"
+                                        class="right-aling"
+                                        />                                
+                                </div>            
+                            </div>
+
+
+                            <div class = "SinEnfoque" 
+                                 id="i7">                                
+                                <label for="existencia">Exstencia:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                        name="existencia"
+                                        id = "pb_existencia" 
+                                        value="${SessionControlProducto.existencia}" 
+                                        size ="15"
+                                        readonly="readonly"
+                                        class="right-aling"
+                                        />                                
+                                </div>            
+                            </div>                                           
+                            
+     
+                        </form>	                                    
+                        
+                    </article>                                          
+                                        
+                    <article class = "botones-footer">
+                 
+                        <div class ="commandbutton">
+                            <a href="javascript:void(0);"
+                            class="botonEnlace"
+                            id="pb_eliminar"
+                            >Eliminar</a>
+                        </div>
+
+                 
+                        <div class ="commandbutton">
+                            <a href="javascript:void(0);"
+                                class="botonEnlace"
+                                id ="pb_cancelar"
+                                >Cancelar</a>
+                        </div>
+
+                    </article>
+                                        
+                    
+                </section>
+            </div>
+
+            <footer>
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>                
+                </h6>
+            </footer>
+                            
+        </jsp:body>
+    </jsp:element>
+                       
+</jsp:root>

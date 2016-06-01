@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+   
+        <jsp:directive.include file="js/codigojs.jsp"/> 
+
+        <style type="text/css" >     
+            @import "css/Basic.css" ;     
+            @import "css/Media.css" ;    
+            @import "css/SeaGreen.css" ;     
+        </style>
+      
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        <jsp:body>
+                      
+            <header>
+                header
+            </header>
+
+            <nav>
+                nav
+            </nav>
+
+            <div id="wrapper">
+                <aside>
+                    aside
+                </aside>
+
+                <section>
+                    <article>
+                        <h1>Acceso Incorrecto</h1>
+                    </article>
+                </section>
+            </div>
+
+            <footer>
+                footer
+            </footer>
+                            
+        </jsp:body>
+    </jsp:element>
+                       
+</jsp:root>

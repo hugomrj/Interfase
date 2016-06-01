@@ -1,0 +1,154 @@
+
+<jsp:root version="2.0"
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+
+                    <article>
+                        <h4>Producto</h4>  
+                    </article>
+                    
+                    <article>    
+                        
+                        <form class="ancho9"> 
+
+                            
+                            <input  TYPE="hidden"
+                                        name="categoria"  
+                                        id="id_categoria"
+                                        value="${SessionControlProducto.categoria.categoria}"
+                                        />      
+
+
+                                <div class = "SinEnfoque" 
+                                     id="i1">                                
+                                    <label for="producto">Producto:</label> 
+                                    <div class ="textbox">
+                                        <input TYPE="TEXT" 
+                                               name="producto" 
+                                               id ="id_producto"
+                            
+                                                value="${SessionControlProducto.producto}"
+                                                readonly="readonly"
+                                               />                                
+                                   </div>
+                                </div>
+                                                        
+                            
+                                           
+                            <div class = "SinEnfoque"
+                                  id="i2">                                
+                                <label for="nombre">Nombre:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                           name="nombre" 
+                                           value="${SessionControlProducto.nombre}" 
+                                           size ="50"   
+                                           readonly="readonly"
+                                           />                                
+                                </div>            
+                            </div>
+                         
+                            
+                            
+                            <div class = "SinEnfoque" 
+                                 id="i4">                                
+                                <label for="precio_venta">Precio venta:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                           name="precio_venta" 
+                                           value="${SessionControlProducto.precio_venta}" 
+                                           size ="15"
+                                           readonly="readonly"
+                                           />                                
+                                </div>            
+                            </div>
+
+
+                            <div class = "SinEnfoque" 
+                                 id="i6">                                
+                                <label for="existencia">Exstencia:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                           name="existencia" 
+                                           value="${SessionControlProducto.existencia}" 
+                                           size ="15"  
+                                           readonly="readonly"
+                                           />                                
+                                </div>            
+                            </div>                                           
+
+                                                
+                                                
+                        </form>	                                    
+                    </article> 
+                        
+    
+                    <div id="busqueda_footer">
+                        
+                        
+                        <div class ="commandbutton">
+                            <a href="javascript:mostrarVentana('capa_oscura');
+                                 javascript:mostrarVentana('capa_clara');
+                                 javascript:dimensionarVentana('capa_clara', 800, 150);
+                                 javascript:AjaxPeticion( '../Producto/Collection/Interaccion/Agregar.do' , 'capa_clara' );
+                                 asignarValor( 'idrol',  '1'  );
+                                 "
+                                class="botonEnlace">Agregar</a>
+                        </div>                     
+
+                        
+                        
+                        <div class ="commandbutton">
+                            <a href="javascript:mostrarVentana('capa_oscura');
+                                 javascript:mostrarVentana('capa_clara');
+                                 javascript:dimensionarVentana('capa_clara', 800, 150);
+                                AjaxPeticion( '../Producto/Collection/Interaccion/Editar.do?id=${SessionControl.id}' , 'capa_clara' );
+                                 "
+                               class="botonEnlace" >Editar</a>
+                        </div>                                
+
+                                 
+                         <div class ="commandbutton">
+                            <a href="javascript:mostrarVentana('capa_oscura');
+                                 javascript:mostrarVentana('capa_clara');
+                                 javascript:dimensionarVentana('capa_clara', 800, 150);
+                                AjaxPeticion( '../Producto/Collection/Interaccion/Eliminar.do?id=${SessionControl.id}' , 'capa_clara' );
+                                 "
+                               class="botonEnlace" >Borrar</a>
+                        </div>                                
+                        
+                        
+                        <div class ="commandbutton">
+                            <a href="javascript:ocultarVentana('capa_oscura');
+                                javascript:ocultarVentana('capa_busqueda');"
+                                class="botonEnlace">Cerrar</a>
+                        </div>                        
+                        
+                    </div>        
+
+    
+</jsp:root>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

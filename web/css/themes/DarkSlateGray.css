@@ -1,0 +1,230 @@
+
+/* Color 1 BASE  */
+
+nav, footer, button, ul#menu, ul#menu li, .botonEnlace {
+    
+    background: #2F4F4F;
+}
+
+ul#listaProcesos li a:hover {      
+    border-left-color: #2F4F4F;    
+}
+
+
+.pagination .active, .pagination a:hover, 
+#pagination .active, #pagination a:hover, .botonEnlace2
+{ 
+    border-color: #2F4F4F;   
+}
+
+.pagination a:link, .pagination a:visited,  
+#pagination a:link, #pagination a:visited,
+    .tableB th, .tableB tfoot tr td,
+    .botonEnlace2
+{ 
+    color: #2F4F4F; 
+}
+
+
+h1, h2,  h3, h4, h5, h6{    
+    color: #2F4F4F;  
+}
+
+  
+/*Color 2 color de base convinada */
+
+.tableB th, .tableB tfoot tr td,  .tableB tbody 
+{
+    border-color: #4D8E8E;   
+}
+
+.tableA th {    
+    background: #4D8E8E;
+}
+
+/*  cuadricula de busqueda  */
+.tbusqueda tbody,   .tbusqueda th{
+    border-bottom-color: #4D8E8E;    
+    border-top-color: #4D8E8E;    
+}
+
+.tbusqueda th {
+      color: #4D8E8E;
+}
+
+
+
+
+
+
+/*Color 3  color de base suave*/
+
+.tableB tbody tr {
+ 
+/*  background: #E2FBFB;*/  
+/*  background: #E2FBFB; */
+  background: #EBFBFB;
+  
+  
+
+}
+
+
+.pagination .active ,
+.tableA tbody tr, #pagination .active , .campoRelacionado, 
+.tbusqueda tr,
+.botonEnlace2
+{  
+  background: #EBFBFB;  
+}
+
+#pagination a {
+    border-color: #EBFBFB;    
+}
+
+
+
+
+
+/*Color 4  resaltado*/
+button:hover, ul#menu li a:hover, .botonEnlace:hover {
+    
+    background-color: #C3B7AE   ; 
+        
+}
+
+
+
+
+/*Color 5  enfoque */
+.Enfoque
+{    
+    
+    background-color:#CED6D6;
+    
+}
+
+ul#listaProcesos li a:hover {     
+    background-color:#CED6D6;
+}
+
+.tableA tbody tr:hover, 
+.tableB tbody tr:hover
+{    
+    background:#CED6D6;
+}
+
+.botonEnlace2:hover
+{
+    background-color:#CED6D6;    
+}
+
+
+
+
+/*Color de texto*/
+/*letras claras*/
+button, ul#menu li a, .botonEnlace {
+    color:white;
+}
+
+
+
+/*letras oscuras*/
+button:hover, ul#menu li a:hover, .botonEnlace:hover {  
+    color:black;    
+}
+
+
+
+
+
+ul#listaProcesos li h4 {    
+    color: DimGray;    
+    color: #666666; 
+    color: DimGray; 
+}
+
+.tableA, .tableB, 
+.botonEnlace2
+{
+    color: DimGray;     
+}
+
+
+
+
+
+
+/* color de la linea de abajo en menu*/
+li a:hover {        
+      /*  border-bottom: 4px solid MediumSeaGreen;*/
+}
+
+
+
+
+/*especiales */
+
+.busqueda input:focus { 
+    border: 1px solid;
+    border-color: tan;
+}
+
+.busqueda label {
+    color: DimGray;
+    color: #666666; 
+}
+          
+
+.error {
+    color:red;    
+}
+
+.info{
+    color:blue;
+}
+
+
+
+/* White*/
+.tableA th {    
+    color: white;        
+}
+
+.tableB th, .tableB tfoot tr td  {    
+    background:white ;
+}
+
+
+/*
+  .tbusqueda th {    
+    background: white;
+}
+
+
+.tbusqueda tr:nth-child(even)  {
+ background:white;
+ 
+}
+*/
+
+
+
+
+
+/*  capas  */
+/*  standard     opacity: 0.3;     opacity: 1;   */
+#capa_oscura, #capa_oscura_segunda
+{
+     background-color: rgba(47, 79, 79, .3);    
+}
+   
+ #capa_busqueda, #capa_clara_primera, #capa_clara_segunda, #capa_clara 
+{
+    background-color: white;
+    background:WhiteSmoke;
+}  
+
+
+

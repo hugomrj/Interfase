@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    
+    <table 
+        name="sys_interacciones">           
+            
+            <id name="interaccion"/>            
+            <column name="nombre_interaccion" property = "nombre"/> 
+            <column name="modulo" foreign = "Modulo"/> 
+            <column name="url"/> 
+            
+    </table>
+    
+</root>
+

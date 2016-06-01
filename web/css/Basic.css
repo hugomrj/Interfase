@@ -1,0 +1,71 @@
+
+   @font-face {
+      font-family: "Source_Sans_Pro";      
+      src: url(fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf);
+    }
+
+   @font-face {
+      font-family: "Arimo";      
+      src: url(fonts/Arimo/Arimo-Regular.ttf);
+    }
+    
+    @font-face {
+      font-family: "Metrophobic";      
+      src: url(fonts/Metrophobic/Metrophobic.ttf);
+    }
+
+    @font-face {
+      font-family: "Gudea";      
+      src: url(fonts/Gudea/Gudea-Regular.ttf);
+    }
+        
+    
+
+*{       
+/*    font-family: "Calibri";
+font-size: 99.5%;
+  
+font-size: 0.95rem;  
+
+*/
+    font-family: "Source_Sans_Pro";
+    
+  
+    font-size: 0.97rem;  
+    
+    margin:0px;
+}
+    
+
+@media (max-width: 600px) {
+ *{       
+    font-size: 100%;
+}
+  
+}
+
+    
+body {    
+        background:white;        
+}
+
+section, aside, article, .SinEnfoque{
+    background:white;    
+}
+
+article {
+    margin-left: 0.5em;     
+    margin-bottom: 0.5em; 
+    margin-top: 0.5em; 
+}
+
+
+
+/* color de campos de tablas antes que el hover */
+.tableA tbody tr:nth-child(even), 
+.tableB tbody tr:nth-child(even)  
+{
+  background:white;
+}
+
+

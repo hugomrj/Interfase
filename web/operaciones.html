@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "_//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Actividad resuelta 20</title>
+
+<script type="text/javascript">
+
+function suma(){
+
+var numero1=parseInt(prompt("pon aqui el numero1:"));
+var numero2=parseInt(prompt("aqui el numero2:"));
+var resultado=parseInt(numero1)+ parseInt(numero2);
+document.getElementById('resultado').value = resultado;
+}
+function resta(){
+
+var numero1=parseInt(prompt("pon aqui el numero1:"));
+var numero2=parseInt(prompt("aqui el numero2:"));
+var resultado=parseInt(numero1)- parseInt(numero2);
+document.getElementById('resultado1').value = resultado;
+}
+function multiplicacion(){
+
+var numero1=parseInt(prompt("pon aqui el numero1:"));
+var numero2=parseInt(prompt("aqui el numero2:"));
+var resultado=parseInt(numero1)* parseInt(numero2);
+document.getElementById('resultado2').value = resultado;
+}
+function division(){
+
+var numero1=parseInt(prompt("pon aqui el numero1:"));
+var numero2=parseInt(prompt("aqui el numero2:"));
+var resultado=parseInt(numero1)/ parseInt(numero2);
+document.getElementById('resultado3').value = resultado;
+}
+
+
+</script>
+</head>
+<body>
+<table border="2">
+<tr><td>
+<table>
+
+<tr><td>
+<input type="button" value="sumar" onClick="suma()">
+</td></tr>
+
+<tr><td><input type="text" name="campo1" id="resultado" value="0"/>
+</td></tr>
+
+</table>
+<table>
+<tr><td>
+<input type="button" value="restar" onClick="resta()">
+</td></tr>
+
+<tr><td><input type="text" name="campo1" id="resultado1" value="0"/>
+</td></tr>
+</table>
+<table>
+<tr><td>
+<input type="button" value="Multiplicar" onClick="multiplicacion()">
+</td></tr>
+
+<tr><td><input type="text" name="campo1" id="resultado2" value="0"/>
+</td></tr>
+</table>
+<table>
+<tr><td>
+<input type="button" value="Dividir" onClick="division()">
+</td></tr>
+
+<tr><td><input type="text" name="campo1" id="resultado3" value="0"/>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,60 @@
+
+<jsp:root version="2.0"
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+    
+        <table class="tableB">
+                <thead>
+                    <tr>
+                       
+                        <th style="width: 80px;">Producto</th>
+                        <th style="width: 430px;">Descripcion</th>
+                        <th style="width: 100px;">Cantidad</th>
+                        <th style="width: 100px;">Precio</th>
+                        <th style="width: 100px;">Sub total</th>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+                    
+                    <c:forEach items="${detalle}" var ="lista" >
+                        
+                        <tr>                            
+                            <detalle  id="${lista.id}">
+                                
+                                <td>
+                                    <producto>${lista.producto.producto}</producto>
+                                </td>
+                                <td>
+                                    <descripcion>${lista.producto.nombre}</descripcion>
+                                </td>
+                                <td>
+                                    <cantidad>${lista.cantidad}</cantidad>
+                                </td>
+                                <td>
+                                    <precio>${lista.precio}</precio>
+                                </td>
+                                <td>
+                                    <sub_total>${lista.sub_total}</sub_total>
+                                </td>
+                                
+                            </detalle>
+                        
+                        </tr>  
+                    </c:forEach>
+                </tbody>
+                
+        </table>
+       
+    
+        <article>
+            
+        </article>
+    
+       
+</jsp:root>
+                
+
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          >
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+    
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>   
+    
+    
+    
+    <jsp:directive.include file="js/ajax/EventListeners.jsp"/> 
+    <jsp:directive.include file="js/script.jsp"/> 
+
+   
+       
+        
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+            <jsp:body>
+                   
+        
+                <button id="miBoton">Hola</button>
+        
+                            
+        </jsp:body>
+    </jsp:element>
+                       
+</jsp:root>
+
+        
+        

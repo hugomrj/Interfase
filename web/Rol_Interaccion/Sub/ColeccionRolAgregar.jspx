@@ -1,0 +1,77 @@
+
+<jsp:root version="2.0"
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+                    <article>
+                        <h4>Agregar Rol</h4>  
+                    </article>
+
+                    <article>    
+                        
+                        <c:set scope="session" var="vista" value="${SessionControlInteraccion}"/>
+                        
+                        <form class="ancho9" 
+                                action="../RolInteraccion/Agregar.do" 
+                                method="post" 
+                                id="ricra_form" 
+                                name='ricra_form'
+                                >
+                                                      
+                            <input  TYPE="hidden"
+                                        name="interaccion"  
+                                        id="ricra_interaccion"
+                                        />                                  
+                            
+                                <div class = "SinEnfoque" 
+                                     id="i2">                                
+                                    <label for="rol">Rol:</label> 
+                                    <div class ="textbox">
+                                        <input TYPE="TEXT" 
+                                               name="rol" 
+                                               id ="ricra_rol"
+                                               class = "campoFK"
+                                               />                                
+
+                                        <div class="botonBusqueda">
+                                            <a href="javascript:void(0);"
+                                                id="ricra_qry_rol"
+                                               >  ...  </a>
+                                        </div>
+
+                                        <output class="campoRelacionado"
+                                            id="ricra_rol_nombre"></output>
+
+                                    </div>            
+                                </div>
+                            
+                        </form>	                                    
+                        
+                    </article>                       
+    
+                    <article class = "botones-footer">
+                        <div class ="commandbutton">
+                            <a href="javascript:void(0);"
+                                id="ricra_agregar"
+                                class="botonEnlace"
+                                >Agregar</a>
+                        </div>
+
+
+                        <div class ="commandbutton">
+                            <a href="javascript:void(0);"
+                                id="ricra_cerrar"
+                                class="botonEnlace"
+                                >Cerrar</a>
+                        </div>
+                    </article>
+                        
+                        
+</jsp:root>
+                
+
+
+
+
+
+

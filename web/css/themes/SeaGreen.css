@@ -1,0 +1,226 @@
+
+/* Color 1 le da nombre al tema  */
+
+nav, footer, button, ul#menu, ul#menu li, .botonEnlace {
+    background: seagreen;
+}
+
+ul#listaProcesos li a:hover {
+    border-left-color: seagreen;
+}
+
+#pagination .active, #pagination a:hover, .botonEnlace2
+{
+        border-color: seagreen;
+}
+
+#pagination a:link, #pagination a:visited,
+    .tableB th, .tableB tfoot tr td,
+    .botonEnlace2
+{
+    color:seagreen;
+}
+
+
+h1, h2,  h3, h4, h5, h6{
+    color: seagreen;
+}
+
+
+
+
+/*Color 2 color de base resaltada */
+
+.tableB th, .tableB tfoot tr td,  .tableB tbody
+, .cc-border
+{
+    border-color: #79B694;
+    border-color: #A9D674;
+    border-color: #5BA97D;
+    border-color: #37B86F;
+
+}
+
+.tableA th {
+    background: #37B86F;
+}
+
+
+/*  cuadricula de busqueda  */
+.tbusqueda tbody,   .tbusqueda th{
+    border-bottom-color: #37B86F;
+    border-top-color: #37B86F;
+}
+
+.tbusqueda th {
+      color: #37B86F;
+}
+
+
+
+/*Color 3  color de base suave*/
+/*      Honeydew    */
+
+.tableB tbody tr {
+  background: Honeydew;
+  background: #E3FCEE;
+}
+
+.tableA tbody tr, #pagination .active , .campoRelacionado,
+.tbusqueda tr,
+.botonEnlace2
+{
+  background: #E3FCEE;
+}
+
+#pagination a {
+    border-color: #E3FCEE;
+}
+
+
+
+
+
+
+
+/*Color 4  enfoque  Botones*/
+button:hover, ul#menu li a:hover, .botonEnlace:hover {
+    background-color: #CCCC99;
+    background-color: #FFD0C4;
+    background-color: gainsboro;
+    background-color: #D9E1DD;
+}
+
+
+
+
+
+
+
+
+/*Color 5  enfoque  campos*/
+.Enfoque
+{
+    background-color:#FFFFCC;
+    background-color:#37B86F;
+    background-color:#FFE4C4;
+    background-color:#FFEFDD;
+}
+
+ul#listaProcesos li a:hover {
+    background-color:#FFEFDD;
+}
+
+.tableA tbody tr:hover,
+.tableB tbody tr:hover
+{
+    background:#FFEFDD;
+}
+
+.botonEnlace2:hover
+{
+    background-color:#FFEFDD;
+}
+
+
+
+
+
+/*Color de texto*/
+/*letras claras*/
+button, ul#menu li a, .botonEnlace {
+    color:white;
+}
+
+
+
+/*letras oscuras*/
+button:hover, ul#menu li a:hover, .botonEnlace:hover {
+    color:black;
+}
+
+ul#listaProcesos li h4 {
+    color: DimGray;
+    color: #666666;
+    color: DimGray;
+}
+
+.tableA, .tableB,
+.botonEnlace2
+{
+    color: DimGray;
+}
+
+
+
+
+
+
+/* color de la linea de abajo en menu*/
+li a:hover {
+      /*  border-bottom: 4px solid MediumSeaGreen;*/
+}
+
+
+
+
+/*especiales */
+
+.busqueda input:focus {
+    border: 1px solid;
+    border-color: tan;
+}
+
+.busqueda label {
+    color: DimGray;
+    color: #666666;
+}
+
+
+.error {
+    color:red;
+}
+
+.info{
+    color:blue;
+}
+
+
+
+/* White*/
+.tableA th {
+    color: white;
+}
+
+.tableB th, .tableB tfoot tr td  {
+    background:white ;
+}
+
+
+/*
+  .tbusqueda th {
+    background: white;
+}
+
+
+.tbusqueda tr:nth-child(even)  {
+ background:white;
+
+}
+*/
+
+
+
+
+
+/*  capas  */
+/*  standard     opacity: 0.3;     opacity: 1;   */
+#capa_oscura, #capa_oscura_segunda
+{
+     background-color: rgba(47, 79, 79, .3);
+}
+
+ #capa_busqueda, #capa_clara_primera, #capa_clara_segunda, #capa_clara
+{
+ background-color: white;
+}

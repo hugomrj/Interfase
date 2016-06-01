@@ -1,0 +1,792 @@
+/*
+responsive design
+
+    240px   x   320
+    320px   x   480
+    480px   x   800
+    600px
+    768px
+    900px
+    1200px
+
+*/
+
+
+/*  esquema que pagina*/
+
+body {
+    margin: 0em;
+    padding:0;
+    height: 100%;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+@media (max-width: 600px) {
+    body {
+        margin-right: 0rem;
+        margin-left: 0rem;
+    }
+}
+
+
+
+#wrapper {
+    width: 100%;
+    position:relative;
+    overflow: hidden;
+}
+
+#wrapper,  section {
+     min-height: 90%;
+}
+
+header{
+    height:1em;
+}
+@media (max-width: 600px) {
+    header{
+        height:0em;
+    }
+}
+
+
+
+nav{
+    height:2em;
+}
+
+aside{
+    float:left;
+    width:10%;
+}
+@media (max-width: 600px) {
+    aside{
+        width:0%;
+    }
+}
+
+
+section{
+    float:right;
+    /*width:85%;*/
+    width:90%;
+}
+@media (max-width: 600px) {
+    section{
+        width:100%;
+    }
+}
+
+
+aside, section{
+    padding-bottom: 100000px;
+    margin-bottom: -100000px;
+}
+
+ footer {
+  position: relative;
+  margin-top: -1px; /* ponga en negativo el alto de su pie de página  */
+  /*height:1em;  */
+  height:15px;
+  clear:both;
+  width:100%;
+
+ }
+
+ article{
+     padding-left: 0px;
+     padding: 0px;
+     margin: 0px;
+     width:80%;
+ }
+@media (max-width: 600px) {
+ article{
+    width:100%;
+ }
+}
+
+article.form{
+    width:70%;
+}
+@media (max-width: 1000px) {
+    article.form{
+        width:90%;
+    }
+}
+
+
+
+article.table{
+    width:80%;
+}
+
+
+
+
+article.botones-footer{
+    /*padding-top: 1.5rem;*/
+    margin-top: 1.5rem;
+}
+
+
+article.tab-cabecera{
+    padding-bottom: 3.5rem;
+}
+
+article.tab-detalle{
+    width: 100%;
+  }
+
+
+
+/*  fin esquema */
+
+
+
+h1,h2,h3,h4{
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+h4{
+    padding-top: 0rem;
+    padding-bottom: 1rem;
+}
+
+h1{
+    font-size: 1.30rem;
+}
+
+h2{
+    font-size: 1.20rem;
+}
+
+h3{
+    font-size: 1.10rem;
+}
+
+h4{
+    font-size: 1rem;
+}
+
+h5{
+    font-size: 0.90rem;
+}
+
+h6{
+    font-size: 0.80rem;
+}
+
+ul#listaProcesos li h4 {
+  font-size: 1rem;
+  padding: 0.2rem;
+}
+
+
+
+
+form{
+    display: table;
+    width: 90%;
+}
+
+
+form.ancho9{
+    display: table;
+    width: 90%;
+}
+
+
+
+.SinEnfoque, .Enfoque{
+    display:table-row;
+    height:2.4em;
+    width: 100%;
+}
+
+
+
+input{
+    float: left;
+    vertical-align:middle;
+}
+
+label{
+    display:table-cell;
+    vertical-align:middle;
+    width: 20%;
+    background: inherit;
+}
+
+
+.textbox{
+    background: inherit;
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.campoFK {
+    width: 5rem;
+}
+
+
+
+
+.commandbutton{
+    background: inherit;
+    display:table-cell;
+    vertical-align:middle;
+    /*padding-top: 0rem;*/
+}
+
+
+.campoRelacionado {
+
+    display:table-cell ;
+    vertical-align:middle;
+    width: 340px;
+    float: left;
+    height:23px;
+}
+
+
+
+
+/* formulario de busqueda*/
+.busqueda {
+    background: inherit;
+    vertical-align:middle;
+    padding-top: 10px;
+
+}
+
+.busqueda input{
+    width: 400px;
+    float:left;
+}
+
+.busqueda label{
+    width: 100px;
+    float:left;
+}
+
+.busqueda input:focus {
+   border-style:solid;
+}
+
+
+
+/* === Estilos del botones === */
+button {
+   width: 8em;
+   height: 2.2em;
+   line-height: 1;
+   border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+button:active {
+    opacity:0.5;
+}
+
+
+
+
+
+/*=  menu  =*/
+ ul#menu {
+  list-style: none;
+  float: left;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+ul#menu li {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+ul#menu li a {
+  float: left;
+  display: block;
+  /*padding: 10px;*/
+  height:100%;
+  text-decoration: none;
+  width: 110px;
+  text-align: center;
+  /*margin: auto;*/
+  line-height: 30px;
+}
+
+ul#menu li a:hover {
+
+}
+
+
+
+/*=  liste de componentes  =*/
+ul#listaProcesos {
+    list-style: none;
+}
+
+ul#listaProcesos li a{
+    display: block;
+    width: 75%;
+    padding: 10px;
+    background: inherit;
+    text-decoration: none;
+}
+
+ul#listaProcesos li a:hover {
+    border-left: 4px solid ;
+}
+
+/*
+ul#listaProcesos li .active {
+    color: #999;
+    background: #333;
+    border-right: 4px solid #444;
+}
+*/
+
+
+
+
+/* TABLAS */
+
+.tableA, .tableB {
+    border-collapse: collapse;
+    border: 1px solid #eee;
+    border-bottom: 2px solid;
+    border-bottom: none;
+}
+
+
+.tableB th, .tableB tfoot tr td,  .tableB tbody  {
+    border: none ;
+    border-bottom: 1px solid ;
+    border-top: 1px solid ;
+}
+
+
+
+.tableB tfoot tr td {    
+    border: none ;
+}
+
+
+
+
+.tbusqueda tbody, .tbusqueda th{
+        border-bottom: 2px solid;
+        border-top: 2px solid ;
+}
+
+.tableA  th, .tableA td {
+    border: 1px solid #eee;
+    padding: 0.2em 30px;
+    padding-left: 1em;
+    cursor:default;
+  }
+
+.tableA th{
+    text-transform: uppercase;
+    font-size: 0.8em;
+    }
+
+.tableA  td {
+    font-size: 15px;
+    }
+
+
+
+/*boton de enlace*/
+.botonEnlace {
+   font-size: 10pt;
+   width: 100px;
+   height: 35px;
+   border: 4px solid white;
+   border-left:  0px; 
+    text-decoration: none;
+    display:table-cell;
+    vertical-align:middle;
+    text-align: center;
+    /*opacity:0.6;*/
+}
+
+.botonEnlace:link,
+.botonEnlace:visited {
+/*   border-top: 1px solid #cccccc;
+   border-bottom: 2px solid #666666;
+   border-left: 1px solid #cccccc;
+   border-right: 2px solid #666666; */
+}
+
+
+button {
+   width: 100px;
+   height: 27px;
+   line-height: 1;
+   border: none;
+}
+
+
+
+
+/* ----------- Pagination---------------------- */
+
+.pagination {
+    border:0;
+    margin:0;
+    padding:0;
+}
+
+.pagination li  {
+    margin:0;
+    padding:0;
+    font-size: 10pt;
+    list-style: none;
+    float:left;
+    min-width: 16px;
+    text-align: center;
+}
+
+.pagination a  {
+    border:solid 1px;
+    margin-right:2px;
+    min-width: 16px;
+    text-align: center;
+    font-weight:bold;
+}
+
+.pagination .active {
+    font-weight:bold;
+    display:block;
+    float:left;
+    padding:3px 3px; /* savers */
+    margin-right:2px;
+    border:solid 1px;
+}
+
+.pagination a:link, .pagination a:visited   {
+    display:block;
+    float:left;
+    padding:3px 3px;
+    text-decoration:none;
+}
+
+.pagination a:hover {
+    border:solid 1px;
+}
+
+
+
+
+/*
+
+#pagination {
+    border:0;
+    margin:0;
+    padding:0;
+}
+
+#pagination li  {
+    margin:0;
+    padding:0;
+    font-size: 10pt;
+    list-style: none;
+    float:left;
+    min-width: 16px;
+    text-align: center;
+}
+
+#pagination a  {
+    border:solid 1px;
+    margin-right:2px;
+    min-width: 16px;
+    text-align: center;
+    font-weight:bold;
+}
+
+#pagination .active     {
+    font-weight:bold;
+    display:block;
+    float:left;
+    padding:3px 3px;
+    margin-right:2px;
+    border:solid 1px;
+}
+
+#pagination a:link, #pagination a:visited   {
+    display:block;
+    float:left;
+    padding:3px 3px;
+    text-decoration:none;
+
+}
+
+#pagination a:hover {
+    border:solid 1px;
+}
+
+
+
+*/
+
+
+
+/*  tabs  */
+
+ ul#tabs {
+  list-style: none;
+  float: left;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+ul#tabs li {
+  float: left;
+  margin: 5px;
+  margin-left: 0px;   
+  
+  padding: 0;
+}
+
+ul#tabs li a {
+  float: left;
+  display: block;
+  height:30px;
+  text-decoration: none;
+  width: 100px;
+  text-align: center;
+  line-height: 30px;
+}
+
+ul#tabs li a {
+    border-bottom: 4px solid rgb(205,239,216);
+}
+
+ul#tabs li a:hover {
+    border-bottom: 4px solid rgb(80,200,120);
+}
+
+ul#tabs li .active {
+  border-bottom: 4px solid rgb(80,200,120);
+}
+
+
+
+/*  formulario busqueda  */
+
+#capa_oscura, #capa_oscura_segunda
+   {
+       top: 0px;
+       left: 0px;
+       display: none;
+   }
+
+
+
+#capa_busqueda
+{
+    display: none;
+    position: absolute;
+}
+
+
+ #capa_clara, #capa_clara_primera, #capa_clara_segunda
+ {
+     display: none;
+ }
+
+
+ .cc-border
+ {
+   border: 1px solid;
+ }
+
+ .cc-border article{
+       width: 100%;
+     }
+
+
+
+
+
+.botones_footer_modal_deprecated{
+  width: inherit;
+  margin-left: 10%;
+  position:relative;
+  padding-bottom: 0.4rem;
+}
+
+
+#busqueda_body {
+     position:relative;
+     width: 100%;
+     width: inherit;
+ }
+#busqueda_body {
+    margin-top: 50px;
+}
+
+.botonBusqueda {
+       float: left;
+}
+
+
+#tab_body {
+    position:relative;
+    display: block;
+    border: 1px darkred;
+    width: 100%;
+}
+
+
+.botonBusqueda {
+       float: left;
+}
+
+
+.botonEnlace2{
+
+   font-size: 10pt;
+   width: 100px;
+   height: 25px;
+
+    text-decoration: none;
+    display:table-cell;
+    vertical-align:middle;
+    text-align: center;
+    border:solid 1px;
+}
+
+
+/*
+.centrado {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+@media (max-width: 600px) {
+    .centrado {
+        width: 80%;
+    }
+}
+*/
+
+
+.centrado {
+    height: 150px;
+    width: 40%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+}
+@media (max-width: 600px) {
+    .centrado {
+        width: 80%;
+    }
+}
+
+
+
+
+
+.right{
+    float: right;
+}
+
+.right-aling{
+    text-align: right;
+};
+
+
+.left{
+    float:left;
+    text-align: left;
+}
+
+
+.notificacion_error, .notificacion_info {
+
+        color: white;
+
+        position:absolute; /*El div será ubicado con relación a la pantalla*/
+
+        left:0px; /*A la derecha deje un espacio de 0px*/
+        right:0px; /*A la izquierda deje un espacio de 0px*/
+        bottom:0px; /*Abajo deje un espacio de 0px*/
+
+        z-index:10;
+        width: 50%;
+
+        margin-left: 1rem;
+        margin-bottom: 3rem;
+
+        padding: 0 0;
+
+ }
+
+
+.notificacion_error{
+        background: #FF1A00;
+ }
+
+
+
+.notificacion_info{
+        background: #37BC61;
+}
+
+
+.contenedorInterior   {
+    font-size: 1.10rem;
+    padding: 2% 2%;
+  }
+
+
+
+
+.calendar-box {
+	display:none;
+	background-color:#fff;
+	border:1px solid #444;
+	position:absolute;
+	width:250px;
+	padding: 0 5px;
+}
+.calendar-box select.calendar-month {
+	width:90px;
+}
+.calendar-box select.calendar-year {
+	width:70px;
+}
+.calendar-box .calendar-cancel {
+	width:100%;
+}
+.calendar-box table td {
+	width:14%;
+}
+.calendar-box .calendar-title {
+	text-align:center;
+}
+.calendar-box a {
+	text-decoration:none;
+}
+.calendar-box .today a {
+	padding:0 5px;
+	margin-left:-5px;
+	background-color:#ffe9c6;
+}
+.calendar-box .selected a {
+	padding:0 5px;
+	margin-left:-5px;
+	background-color:#c9ff8b;
+}

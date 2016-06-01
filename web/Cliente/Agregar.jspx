@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+    
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+
+      
+    <head>
+    
+        <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+        <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+        
+    
+        <style type="text/css">    
+            @import "../css/Basic.css" ;     
+            @import "../css/Media.css" ;    
+            @import "../css/${SessionTheme}";
+        </style>
+        
+        
+        <script type="text/javascript">
+        
+            <jsp:include page="../js/ajax/libreria.js" />
+            <jsp:include page="../js/utilidad/funciones.js"/>
+            <jsp:include page="../js/validate/Cliente/common.js" />
+            <jsp:include page="../js/validate/Cliente/Agregar.js" />
+
+        </script>
+    
+    
+    </head>
+    
+        
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        <jsp:body>
+
+                      
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+                
+                <aside>
+                    <div></div>
+                </aside>
+
+                <section>                  
+                    
+                    <article>
+                            <h3>Nuevo Cliente</h3>  
+                    </article>
+                    
+                    <article>
+                            
+                        <form action="../Cliente/Agregar.do" 
+                            method="post" 
+                            id="ca_form" 
+                            name='ca_form'
+                            >
+    
+                            <input  TYPE="TEXT" 
+                                name="cliente"
+                                id = "ca_cliente" 
+                                hidden="hidden" 
+                                value="0"
+                                />                                
+    
+                            <div class = "SinEnfoque" 
+                                id="i2">                                
+                                <label for="cedula">Cedula:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT"
+                                        id="ca_cedula" 
+                                        name="cedula" 
+                                        size ="20"
+                                        class="right-aling"  
+                                        />                                
+                                </div>            
+                            </div>
+
+                            <div class = "SinEnfoque" 
+                                id="i3">                                
+                                <label for="nombre">Nombre:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" 
+                                        id="ca_nombre"
+                                        name="nombre"
+                                        size ="50" 
+                                        />                                
+                                </div>            
+                            </div>
+
+                            <div class = "SinEnfoque" 
+                                id="i4">                                
+                                <label for="apellido">Apellido:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT"
+                                        id="ca_apellido" 
+                                        name="apellido"
+                                        size ="50"  
+                                        />                                
+                                </div>            
+                            </div>
+
+                            <div class = "SinEnfoque" 
+                                id="i5">                                
+                                <label for="email">Email:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="email"
+                                        id="ca_email" 
+                                        name="email"
+                                        size ="50"  
+                                        />                                
+                                </div>            
+                            </div>
+
+                            <div class = "SinEnfoque" 
+                                id="i6">                                
+                                <label for="direccion">Direccion:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text"
+                                        id="ca_direccion" 
+                                        name="direccion"
+                                        size ="50" 
+                                        />                                
+                                </div>            
+                            </div>
+
+                            <div class = "SinEnfoque" 
+                                id="i7">                                
+                                <label for="telefono">Telefono:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                        id="ca_telefono"
+                                        name="telefono"
+                                        size ="30"  />                                
+                                </div>            
+                            </div>
+
+                            <div class = "SinEnfoque" 
+                                id="i8">                                
+                                <label for="celular">Celular:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text"
+                                        id="ca_celular" 
+                                        name="celular"
+                                        size ="30"  
+                                        />                                
+                                </div>            
+                            </div>
+
+                            <div class = "SinEnfoque" 
+                                id="i9">                                
+                                <label for="ruc">Ruc:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="text" 
+                                        id="ca_ruc"
+                                        name="ruc"
+                                        size ="30"  
+                                        />                                
+                                </div>            
+                            </div>
+
+                        </form>	                                    
+                        
+                    </article> 
+
+                   <article class = "botones-footer">
+ 
+                        <div class ="commandbutton">
+                            <a href="javascript:void(0);" 
+                               class="botonEnlace" 
+                               id="ca_guardar"
+                               >Guardar</a>
+                        </div>                                
+
+                                  
+                        <div class ="commandbutton">
+                                <a href="javascript:void(0);" 
+                                    class="botonEnlace"
+                                    id="ca_cancelar">
+                                    Cancelar</a>
+                        </div>                        
+
+                   </article> 
+                             
+                    
+                </section>
+            </div>
+
+            <footer>
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>                
+                </h6>
+            </footer>
+                            
+        </jsp:body>
+    </jsp:element>
+                       
+</jsp:root>
+
+
+
+
+
+

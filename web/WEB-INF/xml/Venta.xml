@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    
+    <table 
+        name="ventas">           
+            
+            <id name="venta"/>                        
+            
+            <column name="numero_factura"/> 
+            <column name="fecha"/> 
+            <column name="fecha_factura"/> 
+            <column name="cliente" foreign = "Cliente"/> 
+            <column name="gravada5"/> 
+            <column name="gravada10"/> 
+            <column name="iva5"/> 
+            <column name="iva10"/> 
+            <column name="monto_total"/> 
+            <column name="monto_importe"/> 
+            <column name="monto_vuelto"/> 
+            
+            <column name="usuario" foreign = "Usuario"/> 
+
+    </table>
+    
+</root>
+

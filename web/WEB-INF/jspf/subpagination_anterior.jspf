@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<%-- any content can be specified here e.g.: --%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
+
+
+
+<%   
+
+    Integer pagina = 1;
+    pagina = Integer.parseInt(   request.getAttribute("Pagina").toString()  ) ;
+
+    String vinculo = "";
+    vinculo = request.getAttribute("Vinculo").toString() ;
+
+    String href = "";
+    
+    Integer lineas = 0;
+    lineas = (Integer) request.getAttribute("Lineas");
+    
+    Integer totalRegistros = 0;   
+    totalRegistros = (Integer) request.getAttribute("TotalRegistros") ;
+   
+    String htmlElemento = request.getAttribute("htmlElemento").toString();  
+    String ajaxFuncion = request.getAttribute("ajaxFuncion").toString(); 
+    
+    if (pagina == null)    { pagina  = 0;}
+    if (lineas == null)    { lineas  = 1;}
+    if (totalRegistros == null)    { totalRegistros  = 0;}
+    
+
+    final Integer BLOQUES = 10;
+
+    Integer cantidadPaginas = totalRegistros / lineas;
+
+    if ((cantidadPaginas * lineas ) < totalRegistros)
+    {
+        cantidadPaginas++;
+    }
+
+    Integer paginaInicio = 1;
+    Integer paginaFin = 0;
+
+    if (BLOQUES > cantidadPaginas) 
+    {
+        paginaInicio = 1;
+        paginaFin = cantidadPaginas;
+    }
+
+    else if (BLOQUES == cantidadPaginas) 
+    {
+        paginaInicio = 1;
+        paginaFin = BLOQUES;
+    }    
+
+    else if (BLOQUES < cantidadPaginas) 
+    {
+        
+        if (pagina - (BLOQUES / 2) < 1) {
+            paginaInicio = 1;
+            paginaFin = pagina + BLOQUES;
+        }
+        else
+        {
+            paginaInicio = pagina - (BLOQUES / 2);
+        }
+    
+        if (pagina + (BLOQUES / 2) > cantidadPaginas )
+        {
+            paginaInicio = cantidadPaginas - BLOQUES;
+            paginaFin = cantidadPaginas;
+        }
+        else
+        {
+            paginaFin =  pagina + (BLOQUES / 2);
+        }                
+    }    
+
+    %>
+
+           
+    
+<% // Botones de Paginacion %>            
+    
+  <ul id="pagination">
+<%             
+        if (pagina != paginaFin)
+        {
+%>            
+
+            <li>
+                <a href="<%=ajaxFuncion%>('<%=vinculo%>&page=<%=(pagina+1)%>','<%=htmlElemento%>')" >
+                    <jsp:expression>"Siguiente"</jsp:expression>
+                </a>                       
+            </li>    
+            
+<%             
+        }      
+ 
+        for (int i= paginaInicio ; (i != (paginaFin+1)); i++)
+        {
+            if (pagina == i)
+            {
+%>
+                <li class="active">
+                    <jsp:expression>i</jsp:expression>
+                </li>
+<%      
+            }
+            else
+            {
+%>
+
+            <li>
+                <a href="<%=ajaxFuncion%>('<%=vinculo%>&page=<%=(i)%>','<%=htmlElemento%>')" >
+                    <jsp:expression>i</jsp:expression>
+                </a>                       
+            </li>    
+
+                
+<%      
+            }
+        }
+%>
+<%             
+        if (pagina != paginaInicio)
+        {
+%>       
+
+            <li>
+                <a href="<%=ajaxFuncion%>('<%=vinculo%>&page=<%=(pagina-1)%>','<%=htmlElemento%>')" >
+                    <jsp:expression>"Anterior"</jsp:expression>
+                </a>                       
+            </li>    
+            
+<%             
+        }      
+%>
+
+    <li class="active" style="background: transparent; border-color: transparent; opacity:0.6;">
+        Paginas <jsp:expression>pagina</jsp:expression> de <jsp:expression>cantidadPaginas</jsp:expression>
+        Registros <jsp:expression>totalRegistros</jsp:expression>
+    </li>
+
+</ul> 
+
+    
+<br/>
+
+
+
+0981155462

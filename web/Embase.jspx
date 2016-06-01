@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+   
+    <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+    <jsp:directive.include file="../js/codigojs.jsp"/> 
+
+
+        <style type="text/css" >            
+            
+            @import "../css/Basic.css" ;     
+            @import "../css/Media.css" ;    
+            @import "../css/SeaGreen.css";  
+            
+        </style>
+      
+      
+        
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        <jsp:body>
+
+                      
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+                
+                <aside>
+                    <div></div>
+                </aside>
+
+                <section>                  
+                    
+                    <article>
+                            <h3>Titulo de formulario</h3>  
+                    </article>
+                    
+                    <article>
+                            
+                        <form action="../Objeto/Accion.do" method="post" id="form" name='form1'>
+                                                     
+                            <div class = "SinEnfoque">                                
+                                <label for="usuario">Codigo:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" name="usuario" value="${SessionControlUsuario.usuario}" 
+                                           readonly="true"/>                                
+                                </div>            
+                            </div>                               
+                            
+    
+                            <div class = "SinEnfoque" id="i1">                                
+                                <label for="cuenta">Cuenta:</label> 
+                                <div class ="textbox">
+                                    <input TYPE="TEXT" name="cuenta" onFocus="recibirEnfoque('i1');" onBlur="perderEnfoque('i1');"
+                                           value="${SessionControlUsuario.cuenta}"/>                                
+                                </div>            
+                            </div>
+
+                                
+                            <div class= "SinEnfoque" id="i2">	                                
+                                <label for="clave">Contraseña:</label> 
+                                <div class ="textbox"> 
+                                    <input TYPE="PASSWORD" name="clave" onFocus="recibirEnfoque('i2');"  onBlur="perderEnfoque('i2');"/>
+                                </div>                                                
+                            </div>
+
+           
+                            
+                                <div class= "SinEnfoque">  	                                
+                                                                
+                                <div class ="commandbutton"> 
+                                    <button type="submit">Aceptar</button>
+                                </div>
+                                    
+                                    
+                                 <div class ="commandbutton"> 
+                                    <button type="submit">Aceptar</button>
+                                </div>
+                            
+                        <div class ="commandbutton">
+                            <a href="#" class="botonEnlace">Cancelar</a>
+                        </div>                        
+                            
+                 
+                                </div>
+                                
+                            
+                        </form>	                                    
+                        
+                    </article> 
+                                                     
+                                                                           
+                    <article>
+                        
+                        ../Usuario/Editar.
+                                           
+                            <c:url value="../Usuario/Editar.do" var="urlEditar">  
+                                <c:param name="id" value="${SessionControlUsuario.usuario}"/>    
+                                <c:param name="pag" value="Editar.jspx"/>    
+                            </c:url>                                             
+                                
+                        
+                        <div class ="commandbutton">
+                            <a href="${urlEditar}" class="botonEnlace" 
+                               onclick="document.form1.submit();return false">Aceptar</a>
+                        </div>                       
+                        
+                        
+                        <div class ="commandbutton">
+                            <a href="#" class="botonEnlace">Cancelar</a>
+                        </div>                        
+                        
+                        
+                    </article> 
+                                
+                                
+                    <article>
+                        <div> 
+                            <c:set var="varMensaje" value="${SessionMensajes}" />                                                        
+                            <c:if test="${varMensaje != 'null'}">
+                                
+                                <div class="${SessionMensajes.css}">                               
+                                    <c:out value="${SessionMensajes.informacion}" />
+                                    <br/>
+                                    <c:out value="${SessionMensajes.getAdiccionarError()}"/>                                         
+                                </div>
+                                    
+                             </c:if>
+                             <c:set scope="session" var="SessionMensajes" value="null" />                                
+                        </div>    
+                    </article>                                
+                    
+                </section>
+            </div>
+
+            <footer>
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>                
+                </h6>
+            </footer>
+                            
+        </jsp:body>
+    </jsp:element>
+                       
+</jsp:root>
+
+

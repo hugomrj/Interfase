@@ -1,0 +1,2219 @@
+
+7 de abril 2014
+en busca de una solucion para la relacion cabecera detalle,
+falta que la paginacion sea solo para la sub consulta realacionada a la cabecera
+al final en el achivo de la sub consulta en la carpeta tab en el archivo roles existe una llamada a
+la directiva paginacion que se encuentra en web-inf/jspx
+posible solucion crear otro archivo que maneje la paginacion de los tab y se llame subpaginacion
+analizar variables usadas en el archiv paginacion.jspf
+
+
+8 de abril 2014
+descripcion de las variables de session
+SessionPaginaNumeroActual
+la variable sale del archivo controlusuariolistar, se usa tambien para llamar a la pagina jspx listar
+posiblemente para la la utilizacion en la sub consulta se tenga que usar una llamada distinta
+osea un control usuarios sub consulta o algo asi, ver la posibilidad de usar la misma pagina de llamada
+analizar de ser posible que solo se tenga que agregar un archivo de paginacion o de control mas
+si resulta muy complejo realizar los 2 archivos nuevos.
+cuando hacemos click en el siguiente bloque registros en un tab va a la pagina listar pero debe quedar en registro
+
+
+9 de abril 2014
+arreglar filtrar ususario,
+el control editar  funciona pero falta el direccionamiento de paginas,
+hay que cambiar la forma donde se filtra el usuario, dejar en dao y borrar la accion
+actualizacion de idea
+por ahora voy a dejar el archivo accion porque trae como resultado un arhivo request que no se puede
+poner en un archivo de DAO
+
+
+10 de abril 2014
+FALTA que getTabs funcione
+al presionar "Siguiente" en /Interfase/Usuario/Registro.jspx direcciona a
+Interfase/Usuario/Listar.jspx y deberia quedar en Registro
+
+en el proceso de listar el siguiente codigo es listar.do?page=numero
+en el de tab manualmete va a ./Usuario/Registro.jspx?id=69
+analizar listar.do
+se podria modificar listar.do para que direccione segun desde el lugar donde se le envia la peticion
+y procesarla segun sea el caso
+tambien se puede crear otra accion que sea un sublistar.do en el que se cree exclusivamente el listado
+y control de de la paginacion, el posible benefecio de esto seria ya no tocar listar.do que funciona bien y
+se podria configurar de tal manera que la subconsulta funcione para todas las paginas desde donde se
+la llama, en cambio listar.do ya tiene definida a que pagina tiene que direccionar
+FALTA direccionamiento en sub consulta, posiblemente bloqueado temporamente o tal vez solo vaya
+a un registro donde se lo vea en modo lectura, lo ideal seria que este modo modal, analizar la mejor
+forma para que pueda hacerse desde dispositivo moviles
+
+
+14 de abril 2014
+solucionada la falta de parametros en agregar.do
+se elimina el archivo Registro.do y la accion filtrarUsuario
+
+
+27 de mayo 2014
+escrito desde gedit
+la cantidad de lineas que mostrar en listar esta especificada en Secuencia.lineas
+una posible alternativa seria el crear otro campo que especifique el valor de la subconsulta, tal vez de nombre
+sublineas, es posible qu e se tenga que crea otra funcion para realizar una lista, estudiar la posibilidad de
+reutilizar funciones existentes en el caso de ser necesario
+
+identificar como se crea                 <c:forEach items="${SessionRolLista}" var ="roles" >
+el el tab de Usuarios, respondido sale de ControlUsuarioFiltrar
+
+28 de mayo
+creo una nueva funcion y variable publica en Secuencia.java es subLinea y  subListaPaginacion
+error,  los resultados paginados el ultimo registo de la primera pagina se repite como el primer registro en
+la pagina siguiente, resuelto
+ejecutar el archivo activo mayuscula f6
+alternar vistas myuscula escape
+
+porque muestra mas registros en el detalle si la consulta solo da 3?
+resuelto, estaba direccionado a la accion registro.do y no a filtrar.do
+
+divisiones del codigo en la clase Tab
+se crea el metodo divisiones para generar las subconsultas segun parametro de clase base
+
+
+
+29 de mayo
+el parametro codigo en Tab
+    public Tab getTab ( List<Tab> tabs, Integer codigo ){
+no puede ser el numero 0, o al menos debe existir un objeto Tab que sea resuelto
+para que pueda funcionar la llamada a reflexion en el proceso que lo llamo
+
+
+24 de junio
+no funciona solo poniendolo cero 0 a el objeto tab
+
+
+25 de junio
+error cuando el objeto es null
+        Class claseObjeto = Class.forName( t.getObjeto().getClass().getName() );
+
+
+25 de noviembre de 2014
+copiado de la pc xp las carpetas web y src
+
+
+26 de noviembre de 2014
+falta cambiar la capacidad de poder encontrar los archivos xml en cualquier entorno
+falta arreglar subcuadro de datos relacionados y manejarlos de manera independiente
+
+
+1 de diciembre de 2014
+falta agregar una funcion que envie de vuelta al la pagina de login cuando expire la sessiones
+esta es el link del registro en el que muestra el registro y el detalle
+http://localhost:8084/Interfase/Usuario/Registro.jspx
+
+y al hacer click en una de los registros detalles va a esta direccion
+http://localhost:8084/Interfase/Usuario/Filtrar.do?id=1&pag=Registro.jspx
+
+en este caso deberia tener abm simple o detalles donde se muestre toda la informacion del registro
+del detalle
+
+posiblemente web-inf/jspx/tabs.jspf no sea generico, tal vez deba existir una hora para cada objeto
+falta editar registro
+
+
+2 de diciembre de 2014
+arreglar los caso de session caducada en el sistema,
+funciona para la la llamada directa desde el navegador a en paginas.jspx
+ahora falta que funcione con los controladores .do
+falta arreglar manejo de controladores de usuarios, igual que componentes.
+posiblemente se llame Controller
+ya funciona control de usuario logueado dentro de controlador. ahora ver la posibilidad de
+no repetir codigo y hacer que funcione llamanto un objeto
+
+
+3 de diciembre de 2014
+cambio de nombre de carpetas, system, aplication
+cambio de nombre de controlador por controller
+juntar todos los objetos en un solo archivo action
+cambiar el nombre de componente posiblemente por
+subdivision, segmento, particion, session, recurso, ambito
+elemento
+
+
+4 de diciembre de 2014
+posibles nombres, operaciones, interacciones
+gana interacciones en tabla e interaccion en clase
+
+
+5 de noviembre de 2014
+no se juntan los archivos de controladores
+paran a tener este nombre claseControllerAction
+se va a buscar retirar la accion sin la participacion del request en caso de que se pueda hacerlo
+en usuarios hay 2 controladores filtar, voy a borrar el que no funciona mas
+falta agragar procedimiento de eliminar usuario
+
+
+9 de noviembre de 2014
+arreglar borrar en persistencia,
+contiene errores en tiempo de ejecucion
+
+
+10 de noviembre de 2014
+el error en borrar aparece cuando se vuelve a filtrar el codigo del numero que se borra
+pude generar una exepcion en la base, ya se como se caputa en java
+se caputa en el objeto que directamente se conecta con la base y ejecuta la sentencia sql
+falta pode enviar el mensaje al objeto que llama al objeto que captura el error
+se relanza la exepcion para caputurarla en el objeto que la llamo
+
+
+11 de noviembre de 2014
+es el link al que va luego de presionar el boton eliminar en el formulario borrar
+http://localhost:8084/Interfase/Usuario/Borrar.do?id=92&pag=Editar.jspx
+
+
+falta arreglar el formulario editar, para que tenga mas botones
+aceptar y cancelar, cada boton realizar una accion diferente llamando a un controlador
+funciono con un boton tipo ref con evento onclic que llama a formulario con nombr
+
+
+
+2 de junio de 2015
+la base de datos original se perdio,
+se usa una base de datos antigua para adaptacion
+
+en registro.jspx en la parte del los tabs,
+posiblemente se tenga que crear  sub carpetas para cada objeto que use tabs
+ <jsp:directive.include file="../WEB-INF/jspx/tabs.jspf"/>
+
+
+todabia no se soluciona el tema de los paginadores de los tabs
+
+empezar con roles y luego agregar lo que falte para relacionarlos con los otros objetos
+falta agregar rol y registro
+parece que registro funciona bien
+
+
+2 de junio de 2015
+
+el primer cancel no funciona porque utiliza la llamada se hace la que esta relacionada al fomrulario,
+el segundo es mas simple y el que funciona
+
+ver si se usa en un grupo de botones, en vinculos solos no hace falta
+
+posiblemente el form tenga que ir en un article solo y lo botones por fuera relacionandolo por url
+funciona con el formulario dentro de un article y los botones por fuera con direccionamiento con url
+
+
+
+4 de junio 2015
+cambio de la hoja .jspx
+
+agregar rol
+no funciona
+com.itx.system.rol.Rol
+
+
+
+5 de junio 2015
+se arreglo agregar rol
+actualiza rol
+
+
+6 de junio 2015
+no actualiza usuarios, error con md5() de pass
+funciona md5() solo para usuarios, campo pass
+FALTA corregir comando sql en insertar, corregido
+
+
+8 de junio 2015
+no fuciona correctamente sql borrar, corta la ejecucion y no retorna un valor para continuar con la ejecucion
+funciona borrar, retorna un valor nulo en el caso de se haya realizado correctamente
+
+
+9 de junio 2015
+corregir el formulario agregar usuario y crear el formulario y contrlador borrar usuario
+el formulario borrar es parecido al editar pero con todos los campos bloqueados
+falta crear el controlador usuario/borrar
+funciona borrar usuario con controlador y mensajes basico
+
+posiblemente tenga que hacer una funcion para generar el mismo codigo de funcion de mensajes
+
+
+10 de junio 2015
+correccion de cabecera de lista clientes y busqueda
+arreglado borrar jspx por objeto de clase
+al enviar un object null no podia reconocer de que clase era
+
+
+12 de junio 2015
+falta crear abm para tablas que contengas datos relacionados
+empezando con insert
+
+
+13 de junio 2015
+
+este es el sql que sale con el codigo para obtener las claves para los objetos relacionados
+
+insert into productos
+( nombre , codigo_barra , categoria , precio_venta , existencia , impuesto )
+values
+(  'desde consola'  , null ,  , null , null , null )
+RETURNING producto
+
+se tiene que obtener un numero entero,  en teoria ya esta cargado en un objeto definido
+si ya esta cargado en la base de datos al hacer un sele
+
+ct este codigo se optiene para crear un nuevo objeto
+en este caso se pasa un valor con un nombre de parametro que en el archivo de mapeo xml se le carga con un
+identificador que se una clave foranea
+
+haer el seguimiento desde el controlador insert
+analizar si obtiene la infomacion desde   extraerRegistro ( HttpServletRequest request, Object objeto)
+en el extraerregistro se crea una cedenas de tuplas en las que se guardan los nombres del campodela tabla
+y el nombre de la propiedad para relacionarlas, creo que tambien relacionan el nombre del campo relacionado
+porque es un parametro que se obtiene del envio del parametros del request
+
+analizar extraerObjeto ( HashMap parametro_registro, Object objeto)
+extraer objeto se utiliza para la funcion filtarId en persistencia, funciona bien
+
+el error esta en el insert, ell objeto a ser guardado tiene ek campo cargado
+no existe en en insert identifador para identificar tipo de datos no primarios
+
+posiblemete se tenga que modificar recorrerNodo de persistencia para recorrer la opcion de foreign
+
+
+entro de esa opcion    else if ((nodo.getNodeName().equals("column")))
+se recorre la etiqueta xml y se pueden obtener todas las la lista de items, se pueden obtener todas las que
+esten definidas desde aqui, analizar la forma de guardar esas caracteristicas en memoria
+posiblemente se use un campo mas en enlace, una estructura de una cadena de objetos simples de una tupla
+que indiquen el nombre del del atributo y el valor, analizar o cargalo en enlace agrandando la cantidad de
+propiedades
+
+
+15 de junio 2015
+estructura prepara para doble arralist, en el nodo tabla y id tambien carga uno en blanco, ver la posibilidad
+en caso de molestar de solucionar esa parte
+continuar con consutruccion del insert sql ahora que ya posee la serializacion atributos
+
+posiblemente se hay podido usar con otra forma. el preguntar si existe xml de dato y en caso que exista
+crear una serializacion temporal para obtener el tipo el tipo de dato del id, osea guardar objeto para para insertar
+
+se uso el metodo de recorrer la serializacion y ver cual tiene fk,
+no se puede obtener el objeto relacionado porque no se guarda la variable de memoria para el objeto relacionado
+verificar si se puede crear una funcion antes para crear el tipo de objeto con sus dependencias
+
+
+16 de junio 2015
+insert funciona con codigo, aun no
+falta update, primera impresion de solucion tipo de dato con condicion de si es null  o no
+
+
+17 de junio 2015
+ya funciona update con objetos relacionados
+falte terminar componente categoria
+y luego empezar con Producto
+error, no funciona borrar por formularios, ya funciona
+empece a hacer Productos. funciona lista con valor relacionado
+
+
+18 de junio 2015
+funciona cargar productos con los datos relacionados, falta la funcion que traiga la descripcion
+falta controlar la validacion de los datos ingregsados porque al cargar null no funciona, no se pueden dejar
+de cargar datos
+
+VER, analizar la posibulidad de usar <details> para las pestañas en la vista detalle de objeto
+
+
+18 de junio 2015
+empezando a aprender ajax
+
+21 de junio 2015
+aprendi a actualizar una parte de la pagina en un div
+la informacion se trae ejecutando un serlevt
+falta crear un objeto css para mostrar descripcion
+
+22 de junio de 2015
+se llama al valor de un texto dentro de un formulario si se llama desde ese campo con this.value
+no se si funciona document.getbyName("nombrecampo").value
+parece que no funciona por Name solo por Id
+
+posible solucion para los los cuadros de busqueda modal
+se usa forlularios modal con css y dentro de los codigo del  div modal se usa para generar  el codigo de busqueda
+por medio de un servlet, ver posibilidad de aplicacion
+Falta probar
+
+se separa la creacion del objeto XMLhtmlRequest(), y las funciones de peticiones de recarga de una parte de la pagina
+
+
+23 de junio de 2015
+el boton de buscar se va a tener que rediseñar, no funciona los botones normales
+los colores como sugerencia tienen que ser convinados o ver si pueden ser intercambiados con el boton original
+
+
+24 de junio de 2015
+aprender a crear capas, funcion js mostrar y ocultar ventana
+
+
+25 de junio de 2015
+funciona un div blanco sobre un div completo transparente, funciona boton mostrar y ocultar
+analizar el poder usar un objetoDAO para la reutilizacion de funciones
+funciona llamar a un serlet con resultado desde un evento pressenter desdeuna busqueda
+falta didivir entre 3 el div form, cuadro de busqueda, resultado y boton de retorno
+
+
+26 de junio de 2015
+hacer formulario de busqueda con cuadricula estandar
+FALTA, copiar un valor a otro div o a un textbox
+FALTA, css nuevo de table y traer valor al hacer click en el lost focus
+
+
+28 de junio de 2015
+IMPORTANTE muestra color insertando codigo
+http://html-color-codes.info/codigos-de-colores-hexadecimales/
+
+Falta ver como hacer para que el formulario de busqueda sea mas chico segun la cuadricula que se genera
+
+29 de junio de 2015
+cambio de nombre  de jspf
+separacion del formulario de buqueda en una carpeta sub en cada componente
+
+
+1 de julio de 2015
+empieza Proveedores
+finalizado Proveedores y vendedores
+analizar sub consultas con ajax
+analisis, voy a pegar el codigo que esta en el tabs.jspf y colocarlo en registro.jspx
+posiblemente tenga que pegar manualmante todo el codigo para todos los tab en los objetos que tengan
+relacionamiento de colecciones y hacer funcionar los div con las coleciones relacionada mediente ajax
+posiblemente con servlet o con jspf
+
+2 de julio de 2015
+funciona llamar a serlvet y no jsp desde un tab dentro de jspx
+en los tab que se van a contruir se van a tener que se van a tener que que agregar y borrar registros
+en la base de datos directamente
+
+
+4 de julio de 2015
+sub  consulta de usuariorol, le puse action mientras busco otro nombre, creo q va a ser diferente a las colecciones
+no se si se pueda usar como
+cambiar subconsulta por actionCollection
+para usar con rol va a recibir un paramentro de un codigo que se va a filtrar para mostrar datos relacionados
+para este caso rol en cosulta usuarioRol
+
+posiblemente tenga que crear una funcion en la que se le pase un objeto relacionado y que traiga el resultado
+segun dato de clave
+
+
+5 de julio de 2015
+funciona sub consulta llamada conleccion de roles convinada con usuarios
+UsuarioRolActionCollectionUsuario
+ver si se acorta el nombre a Collection, funciona coleccion de usuariorol en rol
+
+
+8 de julio de 2015
+falta limitar paginacion de colecciones
+no funciono llamada de serlvet a serlvet
+hacerlo todo en la primera llamada
+posiblemente se usen funciones de retorno de cadena de caracteres
+no funciona con llamaa a jsp, no se analizo a profundidad aunque no se le encontro la necesidad inmediata
+
+
+
+9 de julio de 2015
+separacion de la vista y el controlador en los fracmentos de busqueda
+creacion de UsuarioActionSubConsulta.do
+
+
+10 de julio de 2015
+botones de cerrar sub pantalla solo funcionan con codigo cerrado
+ver posibilidad de pasar parametros cortos para crear codigos dinamicos en creacion de parametros
+de funciones ajax
+carga el objeto si se le pasa el parametro
+pongo en comentario la linea que dice a donde tienen que ir como destino y si
+se cambian las getSesssio por  setAttribute para crear solo variables de paso de parametros
+funciona enviar codigo de rol de cabecera y selecion de usuario
+
+
+funciona enviar parametros y carga objeto con claves foraneas
+falta controlador de direccionamiento y actualizacion de sub cuadricula
+y controlador de errores en caso de carga erronea
+
+
+
+13 de julio de 2015
+falta direccionamientode paginas en agregar rolusuario
+funciona insertar y direccionando directamente la pagina carga pero sin desplegar la sub consulta
+UsuarioRolControllerAgregar
+
+analizar como hacer para desplegar la sub consulta por medio de parametros
+este es el codigo anterior, ver posibilidad de adaptarlo al nuevo
+
+ver la posibiblidad de cargarlo en el evento al cargar de javascript
+probando incluir directamenteo
+<jsp:directive.include file ="../UsuarioRol/Collection/Usuario.do?rol=${SessionControlRol.rol}"/>
+parace que no se pueden incluir archivos serlvet directamente, buscar otra forma
+
+
+
+
+
+funciona esta linea para insertar una pagina llamada desde un serlevt
+<jsp:include page="../RolInteraccion/Collection/Interaccion.do?rol=${SessionControlRol.rol}" />
+pero no funciona la condicion if
+para que funcione el if parece que si o si tiene que ser un request en ge,tSession
+
+cuando le paso getSeccion no funciona volver a mostrar sub pantalla
+ver si se puede llamar a la controlador filtrar.do, falta enviar parametros
+
+error en ajax Uncaught TypeError: Cannot read property 'style' of null
+
+
+
+15 de julio de 2015
+buscar la forma de ejecutar funciones al cargar la pagina
+
+ver diferencia window.onload vs <body onload=""/>
+
+funciona, volver a pintar la imagen la ventana
+puse <body onload="AjaxPeticion('../UsuarioRol/Collection/Usuario.do?rol=${SessionControlRol.rol}','tab_body');">
+voy a volver a compilar con solo body
+no funciona solo con el <body>
+probar con onload
+!!!! funciono con el load pero todavia no se porque
+al reacargar la pagina vuelve a ejecutar la sub consulta
+al salir y entrar de nuevo a rol tambien funciona
+ejecuta siempre al entrar al rol, tal vez falta un condicional que haga que se ejecute solo al ser necesario
+
+
+16 de julio de 2015
+funciona definir funcion java script y luego llamarla en el onload
+falta verificar si envia parametros
+
+modificado para recibir parametros
+funciona!! agregar un usuario y que luego te despliegue la sub consulta si se despliega despues de agregar
+falta demas botones y formatear sub formulario
+
+
+17 de julio de 2015
+botones de subformulario
+
+
+1 de agosto 2015
+falta control de sessiones para cada pagina en caso de caducidad
+
+falta modificar formulario de alta
+crear formulario de consulta al hacer click en
+
+
+6 de agosto de 2015
+al hacer click en la cuadricula de la sub consulta generar una accion
+<a href="javascript:AjaxPeticion('../UsuarioRol/Collection/Usuario.do?rol=${SessionControlRol.rol}','tab_body')" >
+AjaxPeticion( '../UsuarioRol/Collection/Usuario/Agregar.do' , 'capa_busqueda' );
+
+se hace click en el registro y va a una serlvet que llama a filtrar UsuarioRol
+en el servlet puse un control para que si no exista parametro de pagina no pase nada
+
+            if (paginaDestino != null){
+                response.sendRedirect("../UsuarioRol/"+paginaDestino);
+            }
+
+FALTA: nuevo formulario d edicion de sub consulta, al presionar el boton edicion,
+ver si se puede limpiar el div y volver a pintarlo
+funciona parece volver a pintar el div. crear el formulario de edicion llamado desde una funcion comun de ser posible
+ver la manera de usar la funcion filtrar para buscar el registro antes de pasar a al sub formulario de edicion
+posiblemente se use el grupo de ObjetoColeccionSubObjetoAccion para direccionar entre los jspx
+y los serlevt principales para los abm reales, falta arreglar subformulario editar
+
+tengo un problema con editar, no se puede usar controlador editar porque esta ligado la direccion directamente
+lo que podria hace es es por medio de un parametro decir que no se use una linea de direccionamiento
+ver posibilidad de usar DAO
+
+la siguiente posibiliad es enviar un parametro que diga que no se realice el direccionamiento
+response.sendRedirect("../"+objeto.getClass().getSimpleName()+"/Editar.jspx");
+
+
+ver diferencia entre AGREGAR controlador UsuarioRol y Rol
+
+tambien esta la opcion facil de hacer un codigo controlador nuevo
+diferencias, los alertas y la direccionamiento, ver condicional de elegir direccionamiento
+fuera o dentro de los mensajes, creo que tiene que ir fuera pero falta ver como dejar el direccionamiento condicional
+
+direccional com subconsulta
+            response.sendRedirect("../Rol/Filtrar.do?id="+instancia.getRol().getRol()+"&pag=Registro.jspx") ;
+
+
+condicional con mensaje
+
+            response.sendRedirect("../"+objeto.getClass().getSimpleName()+"/Agregar.jspx");
+
+   y
+
+            response.sendRedirect("../"+objeto.getClass().getSimpleName()+"/Filtrar.do?id="
+                        +objeto.getClass().getMethod(nombreMetodo).invoke(objeto).toString()
+                        +"&pag=Registro.jspx");
+
+
+tal vez no sea la mejor opcion pero una seria la de agregar un condicional de direccion en alerta
+que segun parametro direccione a donde tendria que ir
+            response.sendRedirect("../Rol/Filtrar.do?id="+instancia.getRol().getRol()+"&pag=Registro.jspx") ;
+la vez tenga q ser por medio de un parametro tipo string en el que se pase todo la direccion en una
+oracion completa
+
+Alerta tiene on condicional de si existe o no objeto, en el caso de insert
+se tiene que modificar el sino osea si existe objeto, el que se va a insertar
+modificar la parte en la que tiene que elegir el direccionamiento
+
+la instacia objeto es UsuarioRol pero el filter lo debe hacer en Rol
+podria ser una parametro mas que diga objeto
+ver como se para un parametro
+funciona como parametro enviado dentro del formulario como un valor oculto
+                            <input  TYPE="hidden"
+                                        name="algo"
+                                        id="algo"
+                                        value ="12345"
+                                        />
+
+tambien funciona con la codficacion en la cabecera, pero asi no se pede pasar objetos, solo texto
+                        <form action="../UsuarioRol/Agregar.do?algo='54321'"
+
+buscar una manera mas elegante
+posiblemente sean sessiones para guardar objetos, ver
+
+
+10 de agosto de 2015
+funciona con session
+modificado archivo Alerta.java, si encuentra la session vista se llama a editar.jspx de la viariable vista
+que se obtiene en el propio archivo editar.jspx para quee vuelva al archivo que lo llamo
+entra a vista atribute sin borrar la session vista
+NOTA,   modificar codigo de Alerta para no repetir sentencias duplicadas en for_insert
+
+
+11 de agosto de 2015
+modifica alerta_update
+falta solucionar el tema de los tab para que sea independiente a las acciones en los controladores
+
+            Integer Tab = 1;
+            request.getSession().setAttribute("Tab", Tab);
+
+posiblemente se tenga que pasar un parametro por ref
+/UsuarioRol/Editar.do?tab=1
+si no existe convertir a cero
+
+
+12 de agosto de 2015
+corrigiendo Tab enviando parametro a un serlvet por medio de un form, funciona!!
+ver correccion de session tab de valores sin cerar
+crear procedimiento de eliminar objeto
+
+
+13 de agosto de 2015
+modificado Tab en editar
+modificado alerta para borrar
+
+
+17 de agosto de 2015
+FALTA, paginacion para sub consulta
+coleccion = lista.listaColeccion(new UsuarioRol(), rol, pagina);
+
+
+18 de agosto de 2015
+se borra serlevt de subpaginacion, se usa un jspf como parte de la pagina
+
+<br/>
+<%=request.getAttribute("PaginaNumeroActual") %>
+<br/>
+<%=request.getAttribute("PaginaVinculo") %>
+
+en subpaginacion.jspf
+pagina = Integer.parseInt(   request.getAttribute("PaginaNumeroActual").toString()  ) ;
+<%=pagina%>
+
+
+
+19 de agosto de 2015
+funciono paginacion directamente ccon estructura de paginacion original
+ahora falta saber como enviar los parametros para que se cree la paginacion relacionada a la
+sub consulta
+y si pongo todo en el serlevt? como atributo y volver a reenviar desde el jpsf al la otra pagina
+
+"/UsuarioRol/Collection/Usuario.do
+        // falta filtrar para que solo se pueda filtrar los requistros que tienen relacion con la cabecera
+        request.setAttribute("TotalRegistros", coleccion.size());
+
+        "javascript:AjaxPeticion('../UsuarioRol/Collection/Usuario.do?rol=4&page=1', 'tab_body')"   ?page=2
+
+../UsuarioRol/Collection/Usuario.do?rol=4   ?page
+tab_body
+
+javascript:AjaxPeticion( + vinculo + page + "," + htmlElemento )
+
+falta arreglar page en subpaginacion
+    <li>
+        <a href=<%=vinculo%>?page=<jsp:expression>pagina+1</jsp:expression>>
+            <jsp:expression>"Siguiente"</jsp:expression>
+        </a>
+    </li>
+
+
+20 de agosto de 2015
+page se envia solo
+el vinculo del serlevt tambien
+funcionAjax
+htmlElemento
+
+
+22 de agosto de 2015
+hacer la paginacion al formulario de busqueda
+crear     public String selectSQL (Object objeto, Object objetoRelacionado, String strBuscar) en persistencia
+crear   public  List<T> listaColeccion (Object objeto, Object objRelacionado, String strBuscar, Integer pagina)
+
+
+24 de agosto de 2015
+falta      sin parametro
+                        lista.listaColeccion(new Usuario(), pagina, strBuscar, pagina)
+de objeto relacionado
+
+
+falta definir esta parte
+
+            if (objRelacionado == null)
+            {
+
+
+            }
+            else
+            {
+                resultset = statement.executeQuery( persistencia.selectSQL(objeto, objRelacionado, null));
+                totalRegistros = this.TotalRegistros( persistencia.selectSQL(objeto, objRelacionado, null) ) ;
+            }
+es para crear la sentencia sql de select, se le puedde pasar varios parametros que pueden ser null o no
+puede tener varios paramentros con convinaciones que pueden ser null
+objetoRelacionado y/o palabra de busqueda
+
+
+25 de agosto de 2015
+re escribir los procedimientos  de totalRegistros que funcione con funcione con count(*)
+
+
+    public String countSQL(Object objeto, String strBuscar)  {
+
+        String strSelect = " select count(*) total " ;
+        String strFrom = " from " ;
+        String strWhere = " where" ;
+
+        Serializacion serializacion = new Serializacion(objeto);
+        serializacion.getElementos() ;
+
+        Enlace elemento = new Enlace();
+        strFrom = strFrom + serializacion.getElementos().get(0).getTabla() ;
+        strWhere = strWhere  + " cast("+serializacion.getElementos().get(1).getTabla()
+                                                + " as text) ilike '%"+strBuscar+"%'";
+
+        for (int i = 2; i < serializacion.getElementos().size() ; i++)
+        {
+            elemento = serializacion.getElementos().get(i);
+            strWhere = strWhere  + " or cast("+ elemento.getTabla().toString()
+                                                + " as text) ilike '%" + strBuscar + "%'";
+        }
+
+
+      return strSelect + " " + strFrom +" "+strWhere ;
+    }
+
+funciona countSQL y selectSQL con una funcion basicaSQL
+
+falta corregir TotalRegistros, funciona los procedimientos pero falta arreglar la consulta y la sub paginacion
+error, no trae datos en esta consulta en busqueda de usuarios
+SELECT usuario, cuenta, pass
+  FROM usuarios
+  WHERE  (   cast(usuario as text) ilike '%hu%' or cast(cuenta as text) ilike '%hu%' or cast(pass as text) ilike '%hu%' )
+
+
+
+27 de agosto de 2015
+funciona traer columnas en subconsulta, tenia problemas con el parametro null
+ahora falta arreglar el boton buscar cuando se pasa parametro buscar con un valor
+
+
+
+
+28 agosto de 2015
+hacer funcionar paginacion y vinculo de cadricula resultado de busqueda
+funciona busqueda en cuadricula de busqueda
+falta paginacion
+resultado /Interfase/Rol/ajaxFuncion('www.google.com&page=2','ajaxFuncion')
+desde  {"/Usuario/SubConsulta.do"})
+
+
+1 de septiembre de 2015
+
+AjaxPeticion( '../Usuario/SubConsulta.do?buscar='+document.getElementById('buscar').value ,'idconsulta' );"
+
+javascript:AjaxPeticion('../Usuario/SubConsulta.do?page=2', 'idconsulta' )
+
+este sale en el navegador
+/Interfase/Usuario/SubConsulta.do&page=2
+
+trae un & en vez de ? verificar porque
+
+se agrega esta linea a usuario action sub cosulta.java
+   request.setAttribute("Buscar", (strBuscar == null) ? "" : strBuscar );
+para que el parametro Buscar se cree con parametros o vacio y con eso se vuelve a repertir el parametro para
+construir el url del servlet        '../Usuario/SubConsulta.do?buscar='
+se reutiliza en consulta.jspx
+                request.setAttribute("Vinculo", "../Usuario/SubConsulta.do?buscar="+request.getAttribute("Buscar")) ;
+
+
+
+2 de septiembre de 2015
+arreglar el formato de las ventanas modales para subconsultas
+vincular usuarios, redimencionar
+y busqueda de formularios
+en registro de subformulario falta ocultar campos de codigo
+en editar falta ponerle un boton de busqueda
+
+la primera ventana aparece en rol_usuario/sub/ooleccion.jspx
+
+
+5 de septiembre de 2015
+dimennsionar ventana ajax con funciones.js
+
+
+7 de septiembre de 2015
+aumentar la cantidad de registros en el formulario de busqueda en la cuadricula de resultados
+
+
+8 de septiembre de 2015
+corregir dimensionar ventanas
+corregido para usuarios dentro de roles
+
+
+9 de septiembre de 2015
+crear sub ventanas de iteraccion en registro de rol
+clase creada RolInteraccion
+error en http://localhost:8080/Interfase/RolInteraccion/Collection/Interaccion/Listar.do?rol=3&page=1
+
+
+
+11 de septiembre de 2015
+corrigiendo sub Interaccion en rol,
+corregir tab de usuario, relacionarle rol
+
+a categorias relacionar productos
+en procuctos crear busqueda de categorias
+
+
+13 de septiembre de 2015
+posiblemete borrar tabs.jspf WEB-INF/jspf
+
+analizar mostrar datos de diferentes objetos que se le pasan como parametros
+        request.getRequestDispatcher("/Usuario_Rol/Sub/Coleccion.jspx").include(request, response);
+se crea otra hoja jspx
+
+se hizo la cuadricula de Rol dentro de Usuario, no salio chic en linea para mostrar registro
+
+
+14 de septiembre de 2015
+vamos por agregar rol en usuario
+error en editar rol sub consulta
+finalizado tab roles en usuario
+
+falta agregar clase de modulo, con tab de interacciones
+clase de interacciones, con relacion a modulos
+
+falta agregar relacion de categorias
+
+
+15 de septiembre de 2015
+crear procedimiento de abm para interacciones. ya existe codigo que sirive para otra cosa
+ver que no deje de funcionar lo que ya existe
+creando Interaccion/Listar.do
+falta separar las funciones de Interaccion Controller y Interaccion Action
+haciendo agregar Interaccion, carpeta de modulo vacia
+
+
+17 de septiembre de 2015
+falta editar.jspx de Interaccion
+POSIBLE ERROR. cuandeo en la cabecera llaman a una busqueda con capa_oscura_segunda
+se tiene que borrar primera capa pero tal vez se la pueda usar en el detalle asi que tendria que poder estar
+aunque las cabeceras se modifican sin el detalle pero en la factura tienen que estar.
+creoque que necesariamente se le va a tener que pasar los div que va a tenenr que ocultar y ocultar
+posiblemente tenga que volver a crear sessiones para manejo de ventanas.
+no se pudo solucionar aun las 2 capas oscuras
+finalizo abm de interacciones
+dejar temporalmente clase modulo
+
+falta
+relaccion de categorias en productos, finalizado
+subconsulta de productos en categoria
+
+
+18 de septiembre de 2015
+modificar registro de categorias
+la colecion de productos en categorias no es lo mismo que entre roles y interacciones
+porque no es una relacion de muchos a muchos.  si agregamos tendriamos que agregar un registro que ya existe
+con otra categoria, seria igual que editar, y no podemos borrar porque no se le puede dejar a un producto
+sin categoria, la vez solo sirva para informacion meramente esteticas
+
+tal vez se tenga que usar agregar producto para crear productos nuevos igual a crear nuevo producto,
+al eliminar se eliminaran definitivamente y editar que sean editar sus caracteristicas
+pero temporalmente lo voy a dejar sin actividad
+
+para facturacion,
+no se va a modificar la tabla de productos, va a ser una copia del la facturacion de imprentaleo
+para el detalle de factura
+sin cambios para tabla ventas detalle, la tabla ventas tambien sin cambios
+
+analizar, la posibilidad de empezar con compras
+las tablas son las mismas
+
+
+19 de setiembre de 2015
+empezando con compras
+clase compra_detalle
+clases creadas, falta xml
+
+
+21 de septiembre de 2015
+creacion de clases compra, funciona insercion, falta probar detalles.
+pasar a crear el fomulario de lista de compras
+empezando compras.nuevo.jspx, analisis es
+analizar la forma de guardar cabecera y detalle al mismo tiempo.
+primera posibiliad
+guardar en un form los datos de cabecera y controlar las acciones con botones de llamadas a servlets
+enviando parametros de sessiones de datos
+analizar enviar coleccion incrustada en propiedad de clase, conocer dificultad si vale la pena
+./Proveedor/Mostrar/Nombre.do
+falta sub lista de compra_detalle.
+
+
+22 de septiembre de 2015
+falta crear una colecccion en memoria para compra_detelle
+ver si funciona una llamaa simmple a un serlevt al cargar pagina de compra
+
+
+23 de septiembre de 2015
+comenzar con programacion de detelles de compras,
+llamar desde boton al fondo oscuro y a la capa blanca de sub formulario modal
+la etiqueta que esta es capa_oscura_segunda que llama a un formulario de busqueda de proveedores
+en la cuadricula llama capa_oscura
+funciona doble capas de sub consulta
+            <div id="capa1">
+                <div id="capa_oscura">
+                    <div id="capa_clara">
+                    </div>
+                </div>
+            </div>
+
+        <div id="capa2">
+                <div id="capa_oscura_segunda">
+                    <div id="capa_clara_segunda">
+                    </div>
+                </div>
+        </div>
+
+        <div id="capa3"></div>
+
+se usa debajo de <footer>
+
+funciona llamada a fomulario de agregar productos dese compras_detalles,
+falta agregar campos, y hacer que guarde en una coleccion en memoria.
+
+
+24 de septiembre de 2015
+cambio de sistema a servidor ubuntu, sin problemas y es mas rapido
+error, IInterfase/Rol/Editar.jspx, al pulsar cancelar no vuelve a rol registro.jspx
+parece que no se guarda el id en el boton en la ref id=''.... ya funciona
+
+agregar CompraDetalle, se bloquea subtotal y se tiene que cargar el monto de la formula
+cantidad * precio = subtotal
+
+
+30 de septiembre de 2015
+creando reporte con ireport,
+desde jasperstudio no llega a conectarse a postgresql desde linux, desde windows 8 si
+ireport necesita java7 para funcionar
+
+parece que con este codigo solo funcionan los archivos genereados con jasperstudio
+y no con ireport
+
+
+1 de octubre de 2015
+bucando ruta relativa de archivos xml y jasper para no figar las rutas en los servidores
+
+
+2 de octubre de 2015
+ya no es necesario cambiar la ruta de accesos a archivos xml a cada rato,
+con la funcion
+private String ruta =  this.getClass().getResource("/").getPath().replaceAll("classes", "xml");
+se consigue entrar a la carpeta xml directamente
+
+funciona pdf reporte!!!!
+desde servlert, falta conmando para abrir en pesataña nueva
+falta pasar ruta dinamica de reportes y pasar parametros de ser necesarios
+
+
+5 de octubre de 2015
+seguir con la creacion de formulario de compras. cabecera detalle
+
+
+6 de octubre de 2015
+formulario ventas cabecera detella, crear datos de session para guardar por lote
+compra/nuevo.jspx
+./CompraDetalle/Collection/Listar.do
+/CompraDetalle/Sub/TransaccionLista.jspx
+/CompraDetalle/Sub/TransaccionAgregar.jspx
+en transaccionAgregar tienen que enviar a un controlador que cree en caso de no existir
+la variable de session
+
+en
+../CompraDetalle/Collection/Listar.do
+tiene que obtener los datos de la session y cargar en la lista
+no guarda objeto en memoria proveniente del request, verificar si funciona desde clase
+
+
+7 de octubre de 2015
+cambiar propiedad de clase for formato de
+subTotal a sub_total
+
+8 de octubre de 2015
+falta guardar, factura de compras, obtener session de cabecera y detalle, llama a un controlador que reciba las
+sessiones y las procese por partes.
+
+
+9 de octubre de 2015
+configuracion de amazon web service para desplegar aplicacion
+funciona desde ssh android y windows, con ip publica para pgadmin
+
+
+11 de octubre de 2015
+error al enviar acentos y ñ desde aplicacion web
+se probo este en server.xml
+
+< Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" URIEncoding="UTF-8" / >
+pero no funciono
+
+funciona de esta forma
+request.setCharacterEncoding("UTF-8"); en el servlet,
+
+coregido con creacion de web.xml y adicion de propiedades
+
+<filter>
+  <filter-name>Character Encoding Filter</filter-name>
+  <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+  <init-param>
+    <param-name>encoding</param-name>
+    <param-value>UTF-8</param-value>
+  </init-param>
+</filter>
+
+<filter-mapping>
+  <filter-name>Character Encoding Filter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+
+error compra
+al cargar un detalle de compras y al volver al formulario nuevo que tambien cargue la cabecera y no pierda
+los datos que ya tienen
+buscando la manera de mantener cabecera
+
+primera opcion, se puede enviar parametro por partes en variables a un serlvet para contruir la variable de session
+la segunda manera seria en un evento lostfocus ir a un controlador que guarde las partes de la variable que se envia
+
+
+13 de octubre de 2015
+primera prueba de persistencia de datos en jsp, en el lostfocus de cuadro de texto enviar propiedad para guardar en
+variable de session
+nueva serlevt de controlador CompraTransaccionSetter
+guardar las propiedades luego de un serlvet en cada propiedad que se envia
+pero no mantiene las propiedades que ya existen
+analizar convertirHashMap posiblemente guarde todos los datos en null de todas las propiedades
+ver guardar solo lo que se le pasa como parametro
+o ver guardar propiedad por propiedad
+
+
+14 de octubre de 2015
+continuar con session cabecera
+probar con cargar individualmente cada valor
+parece que individualmente no va a funcionar porque hay que convertir cada dato
+javascript:ajaxSessionObjeto('../Compra/Setter.do?fecha_factura='+this.value);
+
+problemas al guardar fecha en objeto de cabecera desde session, guarda cabecera por atributos separados
+error en formato d focha al hacer objeto.fecha
+buscar alternativas
+una puede ser el crear nuestra ṕropia clase date
+
+
+15 de octubre de 2015
+continuando correccion de fecha en cuadro de texto en jsp desde servlet
+dejar crear objeto nebouleuse.util.date para ultima opcion
+
+segunda opcion seria crear una variable de aplicacion en la que se guarde un objeto
+java.text.SimpleDateFormat
+
+otra opcion es guardar el simpledateformat en un apartado de la misma session
+
+        <fmt:formatDate value="${CompraTransaccionSessionCabecera.fecha_factura}"
+                    pattern="yyyy-MM-dd" var="fmt_fecha_factura" />
+
+funciono con scripts, obetener en una variable y tranfomar por medio de scripts
+
+            <c:set var="fecha_factura_session" value="${CompraTransaccionSessionCabecera.fecha_factura}"  />
+            <jsp:scriptlet>
+
+                java.text.SimpleDateFormat dateFormat= new java.text.SimpleDateFormat("yyyy-MM-dd");
+
+                if (pageContext.getAttribute("fecha_factura_session") != null)
+                {
+                    String fecha_formato = dateFormat.format(pageContext.getAttribute("fecha_factura_session"));
+                    pageContext.setAttribute("fecha_factura", fecha_formato );
+                }
+
+           </jsp:scriptlet>
+
+funciona session de datos factura, fecha_factura, proveedor
+
+
+16 de octubre de 2015
+guardar facturas de compra
+../Compra/Transaccion/Guardar.do
+
+funciona facturar compras pero falta controlar validaciones
+falta formateo de fechas en lista compras
+
+
+18 de octubre
+crear vista de factura de compra
+/Compra/MostrarFactura.do?id=25
+
+
+20 de octubre de 2015
+realizar un formulario para obtener los datos de una factura de compra
+funciona cabecera, falta
+
+funciona detalle con
+                <jsp:include page="../CompraDetalle/Sub/CollectionLista.jspx" >
+                    <jsp:param name="detalle" value=" ${detalle}" />
+                </jsp:include>
+
+
+21 de octubre de 2015
+en formulario factura, borrar boton guardar y solo dejar salir e imprimir
+eliminar vinculo de registro de detalle
+eliminar el enfoque en cuadro de texto
+nueva compra falta direccionar boton cancelar
+falta detalle de registro cargado
+poner solo borrar sin editar
+se puede borrar detalle de compras antes de facturar
+
+
+22 de octubre de 2015
+falta borrar session en nueva factura compra
+falta corregir la session de finalizacion de compra
+empezar con ventas.
+
+
+26 de octubre de 2015
+lista de ventas
+falta nuevo.do
+hacer sub consulta cliente, falta integrar nombre y apellido
+crear sub pantalla de detalle ventas
+funciona obtener datos al perder enfoque en productos, detalles
+error en formula validate/ventas.js
+solucionado formula de subtotal
+
+
+28 de octubre de 2015
+problemas de session, no guarda la lista
+
+
+29 de octubre de 2015
+detalle de ventas, discriminados por monto de porcentaje de iva
+CompraVenta.ImpuestoIva(Integer)
+
+***     posiblemente cambiar compre de campo impuesto99 por taza99
+../Venta/Transaccion/Guardar.do
+
+
+30 de octubre de 2015
+copia para controlmec
+falta setter ventas
+
+
+6 noviembre de 2015
+continuar setter ventas, funciona
+falta guardar ventas con cabecera, ya esta
+falta proceso para visualizar facturas cargadas, funciona
+
+
+9 de noviembre de 2015
+falta agregar boton de lista en cada objeto en la vista registro, esta para algunos
+continuar con pie de factura
+crear 2 tipos de cuadriculas, el la busqueda de objetos en listar.do va a quedar
+hacer una especial para facturas, analizar que es formulariobusqueda
+
+
+10 de noviembre de 2015
+recoloreando tablas tableB
+crear una matriz principal de colores compuesta por 5 principales
+3 de base al sistema y 2 de enfoque
+los colores de error, info y font siguen iguales
+existen 2 tablas, tableA y tableB
+
+
+11 de noviembre de 2015
+reorganizando cuadricula y colores
+falta formatear boton de agregar en cuadricula ventas y compras que sea igual al boton
+de siguiente de paginacion
+reporte
+IF(EQUALS($F{direccion},null),"",$F{direccion})
+CONCATENATE(LTRIM($F{nombre})," ",LTRIM($F{apellido}))
+error en sentencia
+
+
+12 de noviembre de 2015
+AVISO. posiblemente mostrarFactura no funcione Directamente, hacer que funcione
+en un jspx solo sin que se vea que se llama desde un servlet, no funciona en smartfone, ya anda
+- falta div centrado para login
+
+
+13 de noviembre de 2015
+responsive design, dejar hacer zoom hasta 200%
+funciona Usuario logoff
+falta arreglar precioIvaIncluido
+hay que modificar productos para agregarle el precio_sin_impuesto
+luego del porcentaje se calcula el precio de venta
+o lo que se va a hacer es poner el precio de venta real y luego el impuesto
+que le corresponde y se calcula el monto de impuesto real, o costo
+tal vez se le agregen 2 campos, que van a ser calculados
+precio_monto y impuesto_monto en base y producto
+falta modificar factura venta para discriminar precio iva incluido en VentaDetalle
+ver que solo se actualice los campos que se pasan por parametros
+modificado en archivo xml update o no  <column name="existencia"  updatenull="no" />
+
+
+17 de noviembre de 2015
+posiblemente se le ponga a producto campo de costo
+verificar si un producto puede ser vendido por varios proveedores
+o definir si solamente puede ser vendido por un proveedor
+en cada caso el valor del costo va a variar su ubicacion
+falta agregar el valor de los campos valor_valor, impuesto_valor en javascript
+no funciona funcion javascript de producto_calculate
+
+
+18 de noviembre de 2015
+formatear numero en lista de productos
+right en cuadricula para numeros
+FALTA formatear textbox de numeros en formularios
+falta arreglar sessiones en venta factura
+se arreglo usando sessiones, analizar cerrar las sessiones en el boton salir o al final de cargar la pagina
+probar usar condicionar en el caso que session sea null y luego cerrar session para liberar memoria
+
+
+19 de noviembre de 2015
+buscar formato de numero en formulario
+crear la funcion para el evento onkeyup
+en la funcion le tengo que pasar el codigo del id del textbox y el valor que quiero que me tranforme
+
+
+20 de noviembre de 2015
+error al enviar numeros con formato de miles desde formulario, corregido en persistencia
+falta corregir alineacion de numeros ala izquierda, corregido
+formato de datos de numeros con separador de millar en registro.jsp con etiquetas fmt jsp
+
+
+21 de noviembre de 2015
+creando themas, aydado por http://paletton.com/
+
+
+23 de noviembre de 2015
+falta corregir error de calculo de formula en venta nuevo, corregido
+arreglar formato de miles en formularios, arreglado
+falta cambiar que ocurra en el evento al cambiar de valor un input
+
+24 de noviembre de 2015
+arreglar formula en onchange
+quitar para prueba document.getElementById('id_cantidad').onkeyup()
+estudiar javascript no intrusivo
+
+
+25 de noviembre de 2015
+seguimos con java no intrusivo  <body onload="funcionMostarDetalle( );">
+        <head>
+            <script type="text/javascript">
+                    window.onload = function() {
+                        funcionMostarDetalle;
+                        document.getElementById('vn_numero_factura').onfocus  = function() {
+                            recibirEnfoque('i2');
+                        }  ;
+                    }
+            </script>
+        </head>
+nuevo.jspx
+ventas.js
+
+        <div class="botonBusqueda">
+            <a href="javascript:mostrarVentana('capa_oscura_segunda');
+               javascript:mostrarVentana('capa_clara_segunda');
+               javascript:dimensionarVentana('capa_clara_segunda', 700, 400);
+               javascript:AjaxPeticion('../Cliente/SubConsulta.do','capa_clara_segunda');
+               ">  ...  </a>
+        </div>
+
+                <a href="
+                   javascript:mostrarVentana('capa_oscura');
+                    javascript:mostrarVentana('capa_clara');
+                    AjaxPeticion( '../VentaDetalle/Transaccion/Agregar.do' , 'capa_clara' );
+                    dimensionarVentana('capa_clara', 800, 350);
+
+                    javascript:ajaxSessionObjeto('../Compra/Setter.do?proveedor='+document.getElementById('id_proveedor').value );
+
+                    "
+                    class="botonEnlace2">Agregar</a>
+
+
+27 de noviembre de 2015
+continuar con javascript no obstrusivo
+ya se consigio ejecuarlo en una pagina, falta en las que todavia no se cargaron
+
+        javascript:mostrarVentana('capa_oscura_segunda');
+        javascript:mostrarVentana('capa_clara_segunda');
+        javascript:dimensionarVentana('capa_clara_segunda', 700, 500);
+        javascript:AjaxPeticion('../Producto/SubConsulta.do','capa_clara_segunda');
+
+29 de noviebre de 2015
+solicionado javascript no intrusivo sin jquery
+usando addEventListener, ver funcion de uso para navegadores
+analizar posibildad de usar un solo js con todos los componentes de un objeto dado
+
+30 de noviembre de 2015
+error en asignarvalor buscarproducto
+
+    <tr onclick="
+            javascript:asignarValor('id_producto', ${session_consulta.producto} );
+            AjaxPeticion('../Producto/Mostrar/Nombre.do?valor='+document.getElementById('id_producto').value, 'nombreProducto');
+            javascript:ocultarVentana('capa_oscura_segunda');
+            javascript:ocultarVentana('capa_clara_segunda');
+            document.getElementById('id_producto').onblur();
+           ">
+
+1 de diciembre de 2015
+solucionado id de registro de tablas en productos
+tratar de ver si se puede en el sufomulario de agregar producto, al aceptar el registro que se cargue solo la cuadricula
+para no borrar los encabezados y no usar la funcion setter
+
+2 de diciembre de 2015
+obteniendo datos del formulario via ajax
+crear alertas con ajax
+
+3 de diciembre de 2015
+creando mensajes de notificaciones
+
+4 de diciembre 2015
+creado mensaje de error
+mensajes de validaccion vacio por campo
+
+6 de diciembre de 2015
+cambio de unidades a rem
+falta arreglar la mascara de miles en javascript no permitir ceros al inicio
+
+7 de diciembre 2015
+aprender a usar ant
+ant -f C:\\Users\\hugom_000\\Documents\\NetBeansProjects\\Interfase -Dnb.internal.action.name=rebuild -DforceRedeploy=false -Dbrowser.context=C:\\Users\\hugom_000\\Documents\\NetBeansProjects\\Interfase clean dist
+para windows
+
+9 de diciembre de 2015
+ant -f /home/hugo/NetBeansProjects/Interfase -Dnb.internal.action.name=rebuild -DforceRedeploy=false -Dbrowser.context=/home/hugo/NetBeansProjects/Interfase clean dist
+para ubuntu
+falta seleccionar texto en focus. posiblemente por el evento keypress de formatear numero
+buscar alternativas
+
+
+10  de diciembre de 2015
+modificar font a 99.5% para pantalla
+
+11 de diciembre de 2015
+seleccionar texto en un focus vd_ta_cantidad.select()
+windows
+cd C:\Users\hugom_000\Documents\apache-ant-1.9.6\bin
+ant -f C:\\Users\\hugom_000\\Documents\\NetBeansProjects\\Interfase -Dnb.internal.action.name=rebuild -DforceRedeploy=false -Dbrowser.context=C:\\Users\\hugom_000\\Documents\\NetBeansProjects\\Interfase clean dist
+copy C:\Users\hugom_000\Documents\NetBeansProjects\Interfase\dist\Interfase.war C:\Server\apache-tomcat-8.0.22\webapps
+
+12 de diciembre de 2015
+validacion de fecha
+analizar http://amsul.ca/pickadate.js/ para pluggin de fechas, no
+https://github.com/dbushell/Pikaday no
+http://www.ribosomatic.com/articulos/50-coleccion-calendars-datepickers-plugins-jquery-javascript-php-mootools/
+modificar calandar.js
+
+15 de diciembre de 2015
+usando pikaday
+    <script src="../js/pikaday.js"
+            language="JavaScript"/>
+posicionamiento
+
+var elemento = document.getElementById('id_del_elemento');
+var posicion = elemento.getBoundingClientRect();
+
+console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
+
+----------------------------------------------------------------------------------
+    function getAbsoluteElementPosition(element) {
+      if (typeof element == "string")
+        element = document.getElementById(element)
+
+      if (!element) return { top:0,left:0 };
+
+      var y = 0;
+      var x = 0;
+      while (element.offsetParent) {
+        x += element.offsetLeft;
+        y += element.offsetTop;
+        element = element.offsetParent;
+      }
+      return {top:y,left:x};
+    }
+
+
+
+16 de diciembre 2015
+siguiendo el data picker
+hacer que un valor obtenido en un input definir si es fecha o no
+
+17 de diciembre de 2015
+falta contolar el valor de la fecha, tal vez sea solo con condiciones de funciones
+
+22 de diciembre de 2015
+continuar escritura de datapicket, calendario
+
+26 de diciembre 2015
+continuar escritura de datapicket, calendario
+
+27 de diciembre de 2015
+continuar datapicket
+
+
+4 de enero de 2016
+crear 2 nuevos colores, chocolate y rosado
+
+6 de enero de 2016
+al borrar usuario que se borren todas sus dependencias
+error :al agregar un usuario no vuelve a la pagina para mostrar cual se cargo
+
+http://localhost:8080/Interfase/Usuario/Filtrar.do?id=1&pag=Registro.jspx
+http://localhost:8080/Interfase/Usuario/Filtrar.do?id=34&pag=Registro.jspx
+
+7 de enero de 2016
+falta arreglar agregar usuarios
+NO hay que usar session vista en formularios basicos
+ERROR: falta arreglar validaciones de clientes, js
+y arreglar el tema de los tabs
+ERROR: grave es el tema de los tabs, arrglado con condicional de objeto vista, arreglado
+
+8 de enero de 2016
+javascript no intrusivo en cliente
+incluir js directamente
+        <script type="text/javascript">
+            <jsp:include page="../js/codigo.js" />
+            <jsp:include page="../js/validate/Cliente/Agregar.js" />
+        </script>
+
+validaciones css en cliente
+
+12 de enero de 2016
+falta validaccion
+
+14 de enero de 2016
+funciona validacion de solo numeros
+falta direccionar desde javascript
+
+
+15 de enero de 2016
+direccionamiento a insert y alerta de informacion
+aquaman	#37BC61 para el color verde de informacion
+funciona alerta de error y guardar desde javascript, falta
+alerta de info al guardar un registro. tiene que ejecuatse en otra pagina
+desde donde de los llamo
+
+posiblemente se tenga que cambiar la forma de hacer los abm,
+cambiar los alertas para que sean de direccionamiento a las paginas,
+tal vez tengan que guardar un valor en session para capturar el valor por la
+funcion javascript y que sea quien se defina si sale o no el mensaje de informacion
+cambiar por manejo
+
+
+19 de enero de 2016
+hay que mostrar el mensaje al hacer onload de la pagina registro
+se carga el var en el encabezado de la pagina
+<c:set scope="session" var="SessionMensajes" value="null" />
+
+funciona variable que se declara en el .js, se hizo asi, se uso un servlet para
+acceder a session
+
+borrar div de mensaje de paginas
+falta, probar con borrar y editar
+
+
+21 de enero 2016
+crear colores rojo y azul en themas
+
+22 de enero de 2016
+crear mensajes de informacion para borrar clientes
+en linsta tiene que mostrar, copiar js parecido de registro
+
+27 de enero de 2016
+funciona mensajes de alerta con ajax
+    var mensaje = AjaxServlet('../MensajeAction');
+    alerta_info(mensaje);
+empezar actualizando cliente
+
+28 de enero de 2016
+actualizar mensajes usuario
+hay un error que sale en lista, luego de cancelar una accion agregar
+controlar si es tipo de clase Mensaje, solucionado con try{}
+comenzamos usuario registro
+
+ANALIZAr posibilidad de que el control de sessiones sea controlado por un serlvet
+problema de javascript no intrusivo, error en pasar parametros, al quitar el
+onlodad de la pagina registro.jspx
+mirar como se hizo el detalle de ventas
+
+    <a href="javascript:AjaxPeticion('${urlTab1}','tab_body')" >
+        <descripcion>Roles</descripcion>
+    </a>
+
+el nombre del tab ya esta eb js no intrusivo
+
+1 de febrero de 2016
+continuar js no intrusivo
+hay que poner todo el js en usuario/registro.js
+buscar la traza de ventas y copiar como se hace el js
+
+
+venta/nuevo.jspx
+/js/validate/Venta.jsp
+../VentaDetalle/Transaccion/Listar.do
+/VentaDetalle/Sub/TransaccionLista.jspx
+
+no me genera el click en el onload de la pagina
+agregar evento al momento luego de cargar la pagina
+
+2 de febrero de 2016
+agregar botones de prueba
+funciona botones. falta enviar por comando
+
+falta en busqueda de roles, volver a poner todos los registros
+
+3 de febrero de 2016
+no funciona porque la etiqueta se vuelve a generar y al generar no
+se cargan las funciones de javascrip, ver posibilidad de solo cargar la cuadricula
+la etiqueta es  <div id='idconsulta'>
+tal vez hacer dentro de la carpeta, rol sub otro archivo en el que solamente se genere la tabla
+posiblemente se llame table o query,  el archivo de consulta va a tener el codigo de cabecera
+y el boton de cerrar
+
+
+4 de febrero de 2016
+crear una pagina nueva en la que este la barra de buqueda, la cuadricula y el boton de salir
+llamarlo busqueda,
+
+<jsp:directive.include file="../../WEB-INF/jspf/busqueda_header.jspf"/>
+
+    <div id="busqueda_body">
+    </div>
+
+<jsp:directive.include file="../../WEB-INF/jspf/busqueda_footer.jspf"/>
+
+    <div id="busqueda_footer">
+        <jsp:directive.include file="../../WEB-INF/jspf/busqueda_footer.jspf"/>
+    </div>
+
+
+5 de febrero de 2015
+funcionar fraccionar partes de pagina, busqueda
+
+    <tr onclick="
+        javascript:asignarValor('id_rol', ${session_consulta.rol});
+        AjaxPeticion('../Rol/Mostrar/Nombre.do?valor='+document.getElementById('id_rol').value, 'nombreRol');
+        javascript:ocultarVentana('capa_oscura_segunda');
+        javascript:ocultarVentana('capa_clara_segunda');
+        ">
+
+
+8 de febrero de 2016
+continuar con js no i. cuadricula de busqueda
+
+9 de febrero de 2016
+continuar js no in. ver si se puede poner todo en una sola pagina osea funcion
+funciona busqueda rol con filtrado por texto
+falta corregir el js de la cuadricula del tab rol
+
+
+    <tr onclick=
+        "javascript:mostrarVentana('capa_oscura');
+        javascript:mostrarVentana('capa_clara');
+        javascript:dimensionarVentana('capa_clara', 800, 150);
+        javascript:AjaxPeticion( '${Url}' , 'capa_clara' );
+        ">
+
+11 de febrero de 2016
+en las tab de relacion muchos a muchos creo que es necesario cololar el id
+del registro de la tabla.
+se soluciona poniendole el id a la tabla html, se queda asi hasta modificar sobre requisito de cliente
+al agregar un registro del tab se debe actualizar la pagina sin ocultarla
+copiar de guardar registro de ventas
+action="../UsuarioRol/Agregar.do?Tab=1"
+cuando le dejo con Tab=1 funciona aunque ya borre el codigo que lo procesaba
+
+<c:set scope="session" var="vista" value="${SessionControlUsuario}"/>
+
+action="../UsuarioRol/Borrar.do?Tab=1"
+con ese parametro
+action="../UsuarioRol/Agregar.do?noredirect"
+se dice al controlador que no de redireccionar, en el caso que no sea null
+
+
+12 de febrero de 2016
+js no intrusivo, se crea una variable de parametro noredirect
+no funciona el parametro noredirect
+ver otra forma de mostrar
+problema, al cargar la pagina no muestra ningun tab, solamente cuando
+se le hace click ensima
+opcion, posiblemente el valor del tab en caso de existir se pueda guardar en una session
+y luego ver la manera de mostrarlo en la pagina segun sea su valor
+si funciona cuando se hace por condicionales tipo if (1==1)
+funciona asi, a_rol_tab.click();
+se va a capturar el valor de la session tab por medio de un serlevt
+    var mensaje = AjaxServlet('../MensajeAction');
+poner la variable de session en una parte de
+ver si se puede hacer 2 serlvet de gettab y settab
+
+14 de febrero de 2016
+terminado getTab y setTab
+se borra la variable de session Tab de registro.jspx
+funciona mostrar tab
+
+15 de febrero de 2016
+falta contolador para controlar si hay un error de codigo duplicados
+al hacer un click en un registro se tiene que abrir la pagina de registro
+ahi falata js no instrusivo.
+
+                        <div class ="commandbutton">
+                            <a href="
+                            javascript:mostrarVentana('capa_oscura');
+                                javascript:mostrarVentana('capa_clara');
+                                javascript:dimensionarVentana('capa_clara', 800, 150);
+                                javascript:AjaxPeticion( '../UsuarioRol/Collection/Rol/Agregar.do' , 'capa_clara' );
+                                asignarValor( 'id_usuario', '${SessionControlUsuarioRol.usuario.usuario}'  );
+                                 "
+                                class="botonEnlace"
+                                id="crr_agregar"
+                                >Agregar</a>
+                        </div>
+
+16 de febrero de 2016
+el evento agregar se tiene que vicular con la funcion de agregar existente
+funciona llamar a fuciones para no repetir
+vamos por editar, creo que en una relacion de muchos a mucho no hace falta editar
+quitar y solo agregar en caso de pedido, ya esta
+falta, generar codigo al momento en que se da click sobre la barra de paginacion
+http://localhost:8080/Interfase/Rol/SubConsulta.do?buscar=
+una idea seria crear los ids con la secuencia del for,
+falta el saber que id existen para generar el codigo con y ejecutar con eso el codigo
+
+
+17 de febrerp de 2016
+paginacion por javascript no intrusivo
+
+            <li>
+                <a href="<%=ajaxFuncion%>('<%=vinculo%>&page=<%=(pagina+1)%>','<%=htmlElemento%>')" >
+                    <jsp:expression>"Siguiente"</jsp:expression>
+                </a>
+            </li>
+
+
+        <a href="<%=ajaxFuncion%>('<%=vinculo%>&page=<%=(i)%>','<%=htmlElemento%>')" >
+            <jsp:expression>i</jsp:expression>
+        </a>
+        "
+
+botones_paginacion()
+la funcion no esta terminada, falta entrar al elemento <a> y desde ahi agregar el evento
+
+18 de febrero de 2016
+continuar paginacion javascrip
+probando si se pueden agregar cosas con la definicion de eventos
+siiiii
+funciona!!!!!!
+        function addd()
+        {
+            document.getElementById('pag_2').addEventListener('click',
+                function()
+                {
+                    alert('tercera linea linea');
+                },
+                false
+            );
+        }
+codigo que sirve para agregar codigo al addevenlistener
+
+no funciona traer toda los elementos <li>
+
+19 de febrero de 2016
+existen 2 ids de paginacion en el la pagina, ver la forma de identificarlos de manera separada
+<ul id="pagination">
+algo_pagination
+enviar una variable a subpaginacion.jspf
+ver si se puede enviar parametros con
+<jsp:directive.include file="../../WEB-INF/jspf/busqueda_footer.jspf"/>
+?parametro
+se envia por scriptlet
+request.setAttribute("parametro", "");
+Consulta.jspx hay que pasar
+
+
+22 de febrero de 2016
+continuar con paginacion, falta enviar nombre de pagina para componer nombre de id de paginacion
+request.setAttribute("jsp", request.getAttribute("jsp") );
+en Consulta.jspx web/Rol/Sub
+pero desde donde viene?
+donde se lo define?
+desde sevlet "/Rol/SubConsulta.do"
+error sale null jsp de origen
+ya puedo manipular la barra de botones de paginacion, con un id distinto
+ahora a generarle codigo para reccorrer
+analizar como hacer el recorrido de paginacion
+
+
+23 de febrero de 2016
+arreglado subpaginacion
+se le agrega esta linea
+request.setAttribute("jsp", request.getAttribute("jsp"));
+
+24 de febrero de 2016
+adparta subpaginacion de tab rol en cliente
+ver si falta algo a este
+/UsuarioRol/Collection/Rol/Listar.do
+
+este se pone antes de enviar al jspx
+
+        // si no existe la variable jsp que muestre un mensaje de error
+        if  ( httpRequest.getJSPorigen(request) == null )
+        {
+            System.out.println("no existe jsp origen para consulta");
+        }
+        else
+        {
+            request.setAttribute("jsp", httpRequest.getJSPorigen(request));
+        }
+
+funciona mover con los botores de paginacion. pero falta que se puedan seleccionar
+los registros del tab
+
+falta, borrar registros de tab
+ocultar el id del tab y mostrar solo el codigo de descripcion
+FALTA: hacer una validacion de error en el caso que se carguen registros repetidos
+
+
+25 de febrero de 2016
+validacion de registros repetidos al agregar
+cra_agregar
+ejecutar la validaccion de errores de base
+../UsuarioRol/Agregar.do  - ejecuta el insert en la base
+entra en insert Not
+
+
+verficar la manera en que se carga los detalles de ventas
+vd_ta_agregar
+enviar datos por ajax
+ver como capturar persistencia insert
+
+
+26 de febrero de 2016
+segun sea error o no pasa que se guarda los datos o muestra mensajes de error
+falta un controlador que diga que se creo o no un error,
+la session mensajes tiene lo que tiene que mostrar,
+falta algo que diga que si esta bien o esta mal, falta controlador para saber que tipo de error es, ya esta por servlet y js
+se va a crear un objeto en js que mensaje que sea generico
+se crea el objeto en js
+    var Mensaje = {
+        self: this,
+        tipo: '',
+        contenido: ''
+    };
+enviar en los archivos genericos libreria.js
+
+FALTA, capturar los mensajes de error de SQLExeption
+
+
+29 de febrero de 2016
+se crea  public Object insert  con mas parametos para que escriba en el request
+funcion replicar error en el objeto que lo llamo,, se puede caputurar el mensaje de base y mostrarlo
+ver condiciones de mostrar datos no necesarios recortandolos
+
+1 de marzo de 2016
+continuar mensajes de error de base
+funciona mostrar error de base, en insert
+hacer js no intrusivo con login
+Error de mensajes en listar al entrar por segunda vez
+
+2 de marzo de 2016
+login con js
+se muestra mensaje de error pero se queda con la session abierta
+no se puede aplicar request.getSession().invalidate(); antes de mostrar el mensaje.
+ver posibilidad de llamarlo desde un serlevt
+FALTA: en login al presionar enter en el cuadro de texto que ejecute el boton de ingresar, ya esta
+Empezamos a arreglar los objetos de applicacion. Categorias, Productos
+NOTA: los botornes que envian a otras pagianas y que solo tiene una linea de enlace se quedan
+solo se les agrega el id
+ERROR en usuario lista, no encuentra variables de mensajes, quitar
+                    <article>
+                        <div>
+                            <c:set var="varMensaje" value="${SessionMensajes}" />
+                            <c:if test="${varMensaje != 'null'}">
+
+                                <div class="${SessionMensajes.css}">
+                                    <c:out value="${SessionMensajes.informacion}" />
+                                    <br/>
+                                    <c:out value="${SessionMensajes.getAdiccionarError()}"/>
+                                </div>
+
+                             </c:if>
+                             <c:set scope="session" var="SessionMensajes" value="null" />
+                        </div>
+                    </article>
+
+Con el mensaje registro agregado, hay que eliminar el mensaje al momento de mostrar, para que no se vuelva
+a repetir en otra pagina
+funciona mensaje de falta descripcion en agregar categoria, falta enviar a la base de datos
+falta validacion de lado de la base de datos
+
+
+3 marzo de 2016
+falta validacion del lado de la base de datos
+falta mensajes de accion para categorias Registro.jspx
+PROBLEMA. no se peude direccionar un serlvet cuando es llamado
+osea tiene que apuntar si o si a alguna parte, si la insercion fue exitosa
+vuele a la pagina registro.jspx pero si no lo fue deberia quedarse en agregar.jspx
+pero no lo hace porque necesita direccionarse a alguna parte,
+Ver como resolver este problema
+el problema ocurre en http://localhost:8080/Interfase/Categoria/Agregar.do
+la manera de arreglar el problema, es que cuando se lo ejecuta con ajax el servlet no se direcciona
+pero cuando se lo llama por
+
+4 de marzo de 2016
+finalizado aparentemente Categorias, no tubo problemas paginacion,
+vamos a dejar asi temporalmente, luego talvez recodificarla pero ahora funciona asi como esta
+pasamos Productos
+hacer busqueda en categoria en productos
+
+        <tr onclick="
+            javascript:asignarValor('id_categoria', ${session_consulta.categoria});
+            AjaxPeticion('../Categoria/Mostrar/Descripcion.do?valor='+document.getElementById('id_categoria').value, 'nombreDescripcion');
+            javascript:ocultarVentana('capa_oscura_segunda');
+            javascript:ocultarVentana('capa_clara_segunda');
+            ">
+
+5 de marzo de 2016
+falta cerrar busqueda categoria en producto
+dentro de seleccionarregistro puedde ir el tema de los bototnes de paginacion
+o mejor hacer una funcion que lo llaman a los  2 funciones en uno solo
+function Busqueda_Rol() , tal vez tenga  un nombre de relacion generica y
+se lo llama con un parametro que sera el que decida que camino tomar
+para ejecutar correctamente las funciones
+
+
+7 de  marzo de 2016
+ver manera de que que las funciones de busqueda se les pase parametros y que de ahi
+se contruye la funcion
+
+en seleccionar registro usar el data- para llamarlo dataset
+NOTA usar strPrefijo como id de pagina jsp y de indicador unico de elementos
+se va a usar el data-set que se debe definir dentro de un campo no en el registro
+aver si funcionan funciones declarativas. Funciona!!!
+ahora vamos por paginacion,
+FALTA validaciones de interfase, luego vamos por las validaciones de base
+
+8 de marzo de 2016
+validaciones de interfase para Producto, que no falte categoria, falta programar boton guardar
+falta validar solo numeros positivos
+validacion terminada en producto agregar
+js validate producto registro, esta
+js valitate producto editar, falta
+Agregar un archivo que se llame common y que tenga funciones basicas del objeto
+ERROR, categoria si es 0 al perdeer el enfoque crea un error en la traza de productos, ya esta
+ERROR en crhome se puede poner 0 antes de numero 01,234, ya esta
+haciendo editar con common, finalizado para validate_form y enfoque de campos.
+NOTA, en borrar producto se debe controlar que no tenga errores de base que impidan borrar
+
+
+10 de marzo de 2016
+mejorar diseño de base de datos, crear integridad referencial para productos
+ya esta para insert, ahora hay que hacer para borrar
+no estira el mensaje de error para borrar, ya esta
+funciona boton cancelar borrar producto
+falta borrar categoria, ya esta
+comenzando con proveedores
+comenzando a usar atom windows, pero es muy lento para abrir el log
+editado proveedor registro, falta corregir cancelar borrar proveedor
+falta integridar referencial de base
+
+
+11 de marzo de 2016
+corregir update con mensaje de base de datos
+finalizado proveedores,
+comenzando clientes
+
+
+13 de marzo de 2016
+corregido error de clientes, numero de cedula
+falta, editar, codificado editar y borrar
+
+14 de marzo de 2016
+falta boton de aceptar en editar cliente
+corregido borrar cliente ,
+empezar con vendedores
+
+15 de marzo de 2016
+continuar vendedores, finalizado
+continuar con usuarios y roles, tienen caracteristicas de cabecera detalle
+falta un boton de listar a usuario registro
+Falta Cacelar usuario se va a lista rol, se tiene que ir a usuario
+
+analizar posibilidad de crear cuadros de busqueda independiente, analizar casos
+de relaciona muchos a muchos en tablas iguales a usuarios, usuariorol, rol
+
+
+16 de marzo de 2016
+buscar desfracmentar archivos js, y que se puedan usar de manera separada para
+busqueda y sub consultas de relaciones de muchos a muchos
+
+
+Usuario Registro.js
+
+antes de la funcion
+AjaxPeticion('../UsuarioRol/Collection/Rol/Listar.do?jsp=urscr_&usuario=1&page=1','tab_body');
+AjaxPeticion('../UsuarioRol/Collection/Rol/Registro.do?id='+registroid , 'capa_clara' );
+
+
+17 de marzo de 2016
+esquema de sub consulta, coleccion y boton agregar
+dentro del recorrido del row debe haber otra funcion que le de funcionalidad a los registros
+antes de hacer una funcion generica tratar de hacer que cada pagina jspx tenga su relacion js
+ColeccionRolAgregar
+
+    var qry_categoria = document.getElementById( prefijo+'qry_categoria');
+    qry_categoria.addEventListener('click',
+        function()
+        {
+
+            mostrarVentana('capa_oscura_segunda');
+            mostrarVentana('capa_clara_segunda');
+            dimensionarVentana('capa_clara_segunda', 700, 500);
+
+            Busqueda_relacionada("Categoria", prefijo , prefijo+"categoria_descripcion");
+
+        },
+        false
+    );
+
+
+    formato de categoria sub
+    campo mas a funcion de
+                Busqueda_relacionada("Rol", prefijo , prefijo+"rol_nombre", "Nombre");
+
+    Falta corregir agregar rol
+
+
+19 de marzo de 2016
+en buqueda relacionada falta mejorar despues de la paginacion
+solucionado, click luego despues de paginacion
+
+
+20 de marzo de 2016
+falta arreglar boton insertar de
+falta controlar mensajes de base, compiar de clientes
+
+function MensajeErrorCheck()
+no funciona paginacion de subconsulta
+
+
+21 de marzo de 2016
+este es el id de boton de paginacion urcr_pag_2
+usuario rol coleccion rol
+
+AjaxPeticion ('../UsuarioRol/Collection/Rol/Listar.do?jsp=urcr_&usuario=1&page=1','tab_body');
+var vinculo = "../UsuarioRol/Collection/Rol/Listar.do?jsp="+jspOrigen+"&usuario=1";
+
+function sub_tabla_tab(tabla , tab, vinculo_coleccion ){
+
+dentro de sub_tabla_tab hay que poner el codigo de paginacion
+urscr_
+
+falta filtrar con usuario la coleccion
+falta ejecutar funcion segun parametro
+
+function ColeccionRolRegistro(){
+
+22 de marzo de 2016
+ver si se pueden pasar funciones por parametros
+si funciona!! error
+no funciona por asignacion directa de funciones
+ver el tema de funciones anonimas, parece que tampoco funciona
+ver con sentencia en tiempo de ejecucion
+
+            var strCmd = "if (document.getElementById('"+id+"')){ document.body.removeChild(erasediv);}";
+            var timeOutPeriod = 4000;
+            var hideTimer = setTimeout(strCmd, timeOutPeriod);
+
+
+25 de marzo de 2016
+funciona funcion de agregar con codigo reutilizado
+falta funcion de borrar, funnciona!!
+agregando padding a las ventanas modales
+se modifica los actionMostrar para que no tenga problemas con valor vacio
+falta arreglar los parametros sub_tabla_tab(), corregido, pruebas basicas
+
+
+26 de marzo de 2016
+mejoras css, corregido busqueda, botones-footer, buscar css deprecated
+finalizado usuario registro tab roles
+
+27 de marzo de 2016
+corrigiendo rol, registro, con tab mostrando registros
+
+28 de marzo de 2016
+roles agregar, editar, borrar
+falta codigo para borrar por js, borrardo en rol, falta usuario
+
+2 de abril de 2016
+agregar usuario dentro de rol, falta probar funcionalidad, terminado ui
+arreglar subconsulta usuario, eliminar,
+se puede llamar a una parte del codigo para reutilizar js
+
+3 de abril de 2016
+error en agregar usuario dentro de rol
+en agregar se arregla con crear variable de session
+faltaban sessiones de vista
+empezar con sub interacciones
+Falta Arreglar sub paginacion de todos los registros
+
+4 de abril de 2016
+no funciona paginacion en subtab interaccion, si en usuario
+finalizado rol, registro, falta controlar abm
+falta empezar con formulario interacciones
+
+5 de abril de 2016
+comenzando con lista interacciones
+agregar campo url a interaccion
+div.form para formularios
+
+6 de abril de 2016
+no sale mensaje de accion en borrar interaccion
+si en rol pero no entiendo configuracion de rol
+
+        <div class ="commandbutton">
+            <a href="javascript:document.rb_form.submit()"
+            class="botonEnlace"
+            id="rb_eliminar"
+            >Eliminar</a>
+        </div>
+
+        var form = document.getElementById("urcre_form");
+
+funciona sin mensajes, pero borra
+creado nuevo servlet, para borrar mensajes de session
+
+7 de abril de 2016
+pasar a js editar de registro. empezar con usuario
+agregar sub consulta de roles a interaccion
+
+
+8 de abril de 2016
+arregla registro rol en interaccion
+falta arreglar Eliminar Interaccion dentro de rol
+RolInteraccion_ColeccionRolEliminar
+error en sub cosulta en sub paginacion
+
+
+9 de abril de 2016
+buscando error de subpagianacion en subtabs, ya funciona
+
+10 de abril de 2016
+empezando con modulo comercial
+agregar productos a categorias, no va a ser practico, porque no se pueden agregar productos
+sin categorias.
+analizar posibilidad de formatear numero de campos con js no intrusivo
+empezar con la tabla
+hacer nuestra propia funcion de formato, obteniendo el texto y tranformandola al formato de
+puntuacion numerica
+
+18 de abril de 2016
+levantando imagenes al servidor
+creado FilUpload y GetImagen, servlets que se unan par mostar y insertar una imagen jpg, probado
+falta definir forma de uso para casos espeficos
+
+19 de abril de 2016
+buscar manera de formatear columna con formato numerico con js, para todos los caso
+ver si hacer de nuevo o solo usar funcion existente
+dejar de usar el x:formatNumber en los formularios
+usuerio no user para prueba de login rapido en develop
+posiblemente se cree una funcion dentro del common que se dedique a formatear los campos numericos
+
+20 de abril de 2016
+analisis de botones de busqueda, no se aplica temporalmente por la dificultad de usar css puro para iconos
+analizar el algun framework de UI para el diseño pero tal vez para la siguiente version
+
+
+27 de abril de 2016
+formato de miles en textbox numericos en el onload. producto/registro
+
+28 de abril de 2016
+recorremos la tabla para darle formato a las columnas de las tablas,
+se modifica la funcion formatoNumero para que capture el valor y no el input
+se modifica la manera de llamarlo desde un input
+  precio_venta.value = formatoNumero(precio_venta.value);
+ver la posibilidad que no utilizar las librerias de etiquetas JSTL
+  xmlns:x="http://java.sun.com/jsp/jstl/fmt"
+comenzar con vendedores, terminado
+comenzar con compras
+hacer una funcion para formato de fechas, ejemplo,      1-abr-2015
+
+2 de mayo de 2016
+analizar el usar solo tipo de dato nativo date para mostrar fechas en javascript
+la fecha sale asi   Mon May 02 22:41:47 PYT 2016
+se puede separar por partes desde javascript, con la funcion mensaje.substring(n, n)
+se puede obtener año substring(22)
+
+3 de mayo de 2016
+modificado Secuencia.java, nuevo procedimiento para recibir resultSet
+    public  List<T> listaPaginacion (Object objeto, ResultSet resultset, String strBuscar, Integer pagina)
+actualizacion que viene del sistema de MecPresupuesto
+
+9 de mayo de 2016
+crear funcion js de formato de fechas, empezar con compras
+comienza js, funcion derecha y izquiera nuevas funciones para js, no andan parece
+
+10 de mayo de 2016
+crear funcion js que convierta las tres letras del mes en ingles a español, ir completando
+quitar el js de los jspx de transacciones, falta
+boton de busqueda de proveedores, ya esta
+js no intrusivo, para agregar producto en compras
+
+11 de mayo de 2016
+falta arreglar proveedores , solucionado
+continuar compras, detalles de compras
+probar cdta_sub_total.oncommand(); en js, FUNCIONA
+hay que quitar los campos , del texto de la multiplicacion, ya esta.
+
+13 de mayo de 2016
+prograbando brakets ide,
+falta arreglar el focus en agregar producto en compras
+probando nuevos colores
+
+15 de mayo de 2016
+mejorando css con botones, margenes
+funciona el focus, direcciona desde el evento onblur
+falta darle funcionalidad al boton agragar de comprasdetalles
+
+16 de mayo de 2016
+al hacer foco en un input hay que colocar .select();
+para seleccionar todo el texto,
+usar funciones ajax para guardar registros, no direcamente asi se controlan las
+restricciones.
+falta manejo de mensajes de alerta para compras detalles, ver ejemplos sub
+no se usa  MensajeErrorCheck() para las transacciones porque solo carga en memoria, aun no en base de datos
+
+
+17 de mayo de 2016
+funciona error de validacion para detalles de compras,
+
+18 de abril de 2016
+id=0&compra=0&producto=2&cantidad=454&precio=45&sub_total=20,430
+lo que envia para guardar en el compras detalles
+no encuentro error, posiblemente sea de js
+falto la caberera del serlvet, tal vez lo necesite en los serlvet que no se direccionana a ninguna parte
+falta formateo de tabla de detalles de compras, ya esta directo sobre jspx
+ERROR, no multiplica cuando el numero es muy grande
+parece que cuando se pasa un numero con mas de una coma (,)
+error en multiplicar, formato con mas de una coma,
+falta funcion para limpiar comas
+
+19 de mayo de 2016
+                        <c:forEach items="${CompraDetalleTransaccionSessionLista}" var ="lista" >
+                        <c:url value="../CompraDetalle/Transaccion/Registro.do" var="Url">
+                            <c:param name="id" value="${lista.id}" />
+                        </c:url>
+                        <tr onclick="
+                                    javascript:mostrarVentana('capa_oscura');
+                                    javascript:mostrarVentana('capa_clara');
+                                    AjaxPeticion( '${Url}' , 'capa_clara' );
+                                    dimensionarVentana('capa_clara', 800, 250);
+                            ">
+
+hay que formatear  "../CompraDetalle/Transaccion/Registro.do" var="Url"
+
+hay que poner una suma al final del la cuadricula de detalles de compras
+
+20 de mayo de 2016
+aprendiendo android
+jsom  investigar, parece mas facil que webservice xml
+
+
+22 de mayo de 2016
+agregar sumatoria de compras, solo se recorre tboby
+error, no da formato al ultimo, fnnciona recorriendo solo el tbody
+
+
+23 de mayo de 2016
+ERRORRR no funciona boton agregar en sub detalle de roles, al hacer click en botones de paginacion
+no vuelve a cargar la funcionalidad de boton agregar, el evento de click en agregar
+existe en click en cabecera de tab, pero vuelve a cergar desde el primer registro
+se separa las tables para la cabecera detalle y el subtotal
+Falta, subtotal, invetigar como hace en compra, no se puede copiar de ventas porque no existe 
+idea es usar serlvet que traiga la suma de su contenido en session.
+empezando con suma de precio, ver si se suma cantidad
+
+
+24 de mayo de 2016
+crear serlvet que sumen los valores de las sessiones precio, cantidad y subtotal
+
+26 de mayo de 2016
+falta guardar compras, 
+
+30 de mayo de 2016
+falta agregar codigo para guardar, el tema va a estar con la factura, ver como se hacia en ventas
+enviar a "/Compra/Transaccion/Guardar.do" con parametros cargados
+posiblemente hay que quitar setter de  comprar,
+se carga los datos que se envia, falta controlar con mensajes de accion para no cargar repetidos
+
+
+31 de mayo de 2016
+continuar compras, analizar la posibilidad de etiquetar en el xml queno se cargue el insert
+en el formateo del xml si se pone insertnot pasa desapersibido ese campo para no guardar
+corregir fecha en firefox, no guarda, pero funciona calendario en chrome
+falta convertir fecha de 01/01/2010   a     2010-01-01
+idea.  en el datetime de util, al obtener el str
+si se encuentran 2 "-" o 2 "/" que conviertan los formatos de datos
+
+
+1 de junio de 2016
+validando fechas con diferentes formatos, creada Cadena,java, falta controlar fecha valida
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

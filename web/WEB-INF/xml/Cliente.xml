@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    
+    <table 
+        name="clientes">            
+                    
+            <id name="cliente"/>
+            <column name="cedula"/>
+            <column name="nombre" /> 
+            <column name="apellido" /> 
+            <column name="email"/>
+            <column name="direccion"/>
+            <column name="telefono"/>
+            <column name="celular"/>
+            <column name="ruc"/>
+            
+    </table>
+    
+</root>

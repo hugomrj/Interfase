@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    
+    <table 
+        name="compras_detalle">           
+            
+            <id name="compra_detalle" property = "id"/>    
+                                
+            <column name="compra" foreign = "Compra"/> 
+            <column name="producto" foreign = "Producto"/> 
+            
+            <column name="cantidad"/> 
+            <column name="precio"/> 
+            <column name="sub_total"/> 
+            
+    </table>
+    
+</root>
+

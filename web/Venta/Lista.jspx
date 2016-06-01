@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+    Document   : colores
+    Created on : 09-oct-2013, 12:20:48
+    Author     : hugo
+-->
+
+
+<jsp:root version="2.0"
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:x="http://java.sun.com/jsp/jstl/fmt"
+          >
+    
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+   
+    <jsp:directive.include file="../js/ajax/XMLHttpRequest.jsp"/>
+    <jsp:directive.include file="../js/ajax/Funciones.jsp"/>
+    <jsp:directive.include file="../js/validate/Venta.jsp"/>
+
+
+    <style type="text/css" >            
+            
+            @import "../css/Basic.css" ;     
+            @import "../css/Media.css" ;    
+            @import "../css/${SessionTheme}"; 
+            
+        </style>
+      
+
+    <jsp:element name="html">
+        <jsp:attribute name="lang">ES</jsp:attribute>
+        <jsp:body>
+            <jsp:directive.include file="../WEB-INF/jspf/sessiones.jspf"/>
+                      
+            <header>
+                <div></div>
+            </header>
+
+            <nav>
+                <jsp:directive.include file="../WEB-INF/jspf/nav.jspf"/>
+            </nav>
+
+            <div id="wrapper">
+                
+                <aside>
+                    <div>
+                                             
+                    </div>
+                </aside>
+                
+                <section>
+
+                        <div class = "busqueda"> 
+                            <form  action="../Compra/Listar.do" method="post">     
+                                <label for="buscar">Buscar:</label>
+                                <input type="search" name="buscar"  placeholder="escribir y presionar Enter"  />
+                            </form>
+                        </div>                               
+                    
+                    <article>
+                            <h3>Ventas</h3>  
+                    </article>
+                    
+                    <article>         
+                        
+                        <table class="tableA">
+                            <thead>
+                                <tr>
+
+                                    <th>Nro Factura</th>
+                                    <th style="width: 120px;">Fecha</th>
+                                    <th style="width: 200px;">Cliente</th>
+                                    <th style="width: 00px;">Monto</th>
+                                
+                                </tr>
+                                
+                            </thead>
+                            
+                            <tbody>
+                                
+                            <c:forEach items="${SessionLista}" var ="lista" >      
+                                <c:url value="../Venta/FacturaMostrar.do" var="Url">  
+                                    <c:param name="id" value="${lista.venta}" />                                                                    
+                                </c:url>  
+                                
+                                <tr onclick="location.href = '${Url}'">  
+                                    
+                                    <compra  id="${lista.venta}">
+                                      
+                                        <td>
+                                            <factura>${lista.numero_factura}</factura>
+                                        </td>
+                                        <td>
+                                            <fecha>
+                                                <x:formatDate value="${lista.fecha_factura}" pattern="yyyy-MM-dd" />                                                  
+                                            </fecha>    
+                                        </td>
+                                        <td>
+                                            <cliente>${lista.cliente.nombre} ${lista.cliente.apellido}</cliente>    
+                                        </td>
+                                        <td>
+                                            <proveedor>${lista.monto_total}</proveedor>    
+                                        </td>                                        
+                                        
+                                    </compra>                      
+                                </tr>                        
+                            </c:forEach>        
+                                
+                         
+                        </tbody>
+                        </table>
+                        
+                    </article> 
+                    
+                    
+                    <article>
+                        <jsp:directive.include file="../WEB-INF/jspf/pagination.jspf"/>
+                    </article>
+                    
+                    
+                    <article>
+                        <div class ="commandbutton">
+                            <a href="../Venta/Nuevo.do" 
+                               id="venta_nuevo"
+                               class="botonEnlace">Nuevo</a>
+                        </div>                                                                             
+                    </article> 
+
+                    
+                    <article>
+                        <div> 
+                            <c:set var="varMensaje" value="${SessionMensajes}" />                                                        
+                            <c:if test="${varMensaje != 'null'}">
+                                
+                                <div class="${SessionMensajes.css}">                               
+                                    <c:out value="${SessionMensajes.informacion}" />
+                                    <br/>
+                                    <c:out value="${SessionMensajes.getAdiccionarError()}"/>                                         
+                                </div>
+                                    
+                             </c:if>
+                             <c:set scope="session" var="SessionMensajes" value="null" />                                
+                        </div>    
+                    </article>                                
+                    
+                    
+                    <br/><br/>
+                    
+                </section>
+            </div>
+
+            <footer>
+                <h6>
+                    <jsp:directive.include file="../WEB-INF/jspf/footer.jspf"/>                
+                </h6>
+            </footer>
+                            
+        </jsp:body>
+    </jsp:element>
+                       
+</jsp:root>
+
+        
+        
+        
+        
+        

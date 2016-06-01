@@ -1,0 +1,8 @@
+<%-- any content can be specified here e.g.: --%>
+
+
+<%@ page pageEncoding="UTF-8" %>
+
+<h6>
+<jsp:expression>" Powered by itx   © Copyright 2015 "</jsp:expression>
+</h6>

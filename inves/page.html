@@ -1,0 +1,67 @@
+
+<html>
+
+<head>
+<title>El primer documento HTML</title>
+
+
+<script type="text/javascript">
+
+
+  function ValidaSoloNumeros() {
+
+alert(event.keyCode);
+
+     if ((event.keyCode < 48) || (event.keyCode > 57))
+      event.returnValue = false;
+  }
+
+
+
+  window.onload = function() {
+        var cedula = document.getElementById( "cedula" );
+
+        cedula.onkeyup  = function() {
+             ValidaSoloNumeros();
+        };
+
+
+  }
+
+
+
+</script>
+
+
+</head>
+
+<body>
+
+
+  <FORM action="http://algunsitio.com/prog/usuarionuevo" method="post">
+     <P>
+
+
+
+       <div class = "SinEnfoque"
+           id="i2">
+           <label for="cedula">Cedula:</label>
+           <div class ="textbox">
+               <input TYPE="TEXT"
+                   id="cedula"
+                   name="cedula"
+                   size ="20"
+                   class="right-aling"
+                   />
+           </div>
+       </div>
+
+
+     </P>
+  </FORM>
+
+
+
+</body>
+
+</html>

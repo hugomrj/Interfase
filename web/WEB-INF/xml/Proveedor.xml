@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    
+    <table 
+        name="proveedores">            
+                    
+            <id name="proveedor"/>
+            <column name="nombre"/>
+            <column name="direccion"/>
+            <column name="telefono"/>
+            <column name="ruc"/>
+             
+    </table>
+    
+</root>

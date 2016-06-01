@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    
+    <table 
+        name="vendedores">            
+                    
+            <id name="vendedor"/>
+            <column name="nombre" /> 
+            <column name="apellido" /> 
+
+    </table>
+    
+</root>

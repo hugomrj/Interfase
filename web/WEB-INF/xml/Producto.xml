@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    
+    <table 
+        name="productos">           
+            
+            <id name="producto"/>                        
+            
+            <column name="nombre"/> 
+            <column name="codigo_barra"/> 
+            <column name="categoria" foreign = "Categoria"/> 
+            <column name="precio_venta"/> 
+            <column name="existencia"  updatenull="no" /> 
+            <column name="impuesto"/> 
+            <column name="precio_valor"/> 
+            <column name="impuesto_valor"/> 
+                        
+    </table>
+    
+</root>
+
